@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portrait Art by DRISS LAHLOU - متجر رسم البورتريه</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* استيراد الخطوط العربي */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* تأثيرات الصور والكروت */
+        .product-card:hover img, .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f3f4f6;
+            aspect-ratio: 3/4;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
+            border-color: #4f46e5;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* الواجهة الرئيسية بخلفية ثابتة */
+        .hero-bg {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.82), rgba(17, 24, 39, 0.82)), url('https://i.postimg.cc/FF39pC7j/photo-5857188129129827771-y.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .signature-font {
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Animation pour le bouton flottant */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .float-whatsapp {
+            animation: pulse-green 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Bouton WhatsApp Flottant -->
+    <a href="https://wa.me/212614660292" target="_blank" class="fixed bottom-6 right-6 z-[100] bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl float-whatsapp transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- En-tête / Navigation -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex flex-col">
+                <h1 class="text-xl md:text-2xl font-black text-indigo-700 italic leading-none signature-font">PORTRAIT ART</h1>
+                <span class="text-[10px] md:text-xs font-bold text-gray-500 tracking-[0.2em] mt-1">by DRISS LAHLOU</span>
+            </div>
+            
+            <nav class="hidden lg:flex space-x-reverse space-x-8">
+                <a href="#" class="hover:text-indigo-600 font-bold transition">الرئيسية</a>
+                <a href="#about" class="hover:text-indigo-600 font-bold transition">عن الفنان</a>
+                <a href="#gallery" class="hover:text-indigo-600 font-bold transition">أعمالي</a>
+                <a href="#products" class="hover:text-indigo-600 font-bold transition">الأسعار</a>
+            </nav>
+            
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/212614660292" target="_blank" class="bg-green-500 text-white px-4 md:px-6 py-2 rounded-full flex items-center gap-2 hover:bg-green-600 transition shadow-lg font-bold text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">Commander via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section / Accueil -->
+    <section class="hero-bg text-white py-24 md:py-40 overflow-hidden text-center relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <span class="inline-block bg-indigo-600/40 backdrop-blur-sm border border-indigo-400/30 px-6 py-2 rounded-full text-xs font-bold mb-8 tracking-[0.3em] uppercase">Portrait Art by Driss Lahlou</span>
+            <h2 class="text-5xl md:text-8xl font-black mb-8 leading-tight">حوّل أغلى لحظاتك <br> للوحات فنية فخمة</h2>
+            <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto font-light leading-relaxed">إبداع بريشة الفنان **ادريس لحلو**. كنحوّلو تصاوركم للوحات مرسومة باليد وبأحدث تقنيات الديجيتال بأعلى جودة فالمغرب.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#gallery" class="bg-white text-indigo-900 px-12 py-4 rounded-full font-bold hover:scale-105 transition shadow-2xl text-lg">تصفح المعرض</a>
+                <a href="https://wa.me/212614660292" target="_blank" class="bg-indigo-600 border border-indigo-400 text-white px-12 py-4 rounded-full font-bold hover:bg-indigo-500 transition text-lg">Commander par WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À Propos / About Artist -->
+    <section id="about" class="py-24 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <div class="relative group">
+                        <div class="absolute -inset-2 bg-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                        <img src="https://i.postimg.cc/59LxgK6Q/photo-5857188129129827767-y.jpg" alt="Driss Lahlou Studio" class="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                </div>
+                <div class="md:w-1/2 text-right">
+                    <span class="text-indigo-600 font-bold uppercase tracking-widest text-sm">الفنان</span>
+                    <h3 class="text-4xl font-black mt-2 mb-6">ادريس لحلو (Driss Lahlou)</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        أهلاً بكم في عالمي الفني. أنا **ادريس لحلو**، متخصص في رسم البورتريه بمختلف أنواعه. شغفي هو تحويل الملامح البشرية إلى قطع فنية تنبض بالحياة، سواء باستخدام الفحم الكلاسيكي، الرصاص، أو الفن الرقمي (Digital Art). كل لوحة هي قصة فريدة أرسمها بعناية فائقة لضمان رضاكم التام.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 text-center">
+                        <div class="p-4 bg-gray-50 rounded-xl">
+                            <span class="block text-3xl font-black text-indigo-600">100%</span>
+                            <span class="text-sm text-gray-500 font-bold">رسم يدوي</span>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl">
+                            <span class="block text-3xl font-black text-indigo-600">+500</span>
+                            <span class="text-sm text-gray-500 font-bold">لوحة منجزة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie d'Images -->
+    <section id="gallery" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-black mb-4">أعمال مختارة من PORTRAIT ART</h3>
+                <div class="w-24 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>
+                <p class="mt-6 text-gray-500 max-w-xl mx-auto italic leading-relaxed text-lg">لمسة إبداعية من توقيع الفنان ادريس لحلو لكل طلبية</p>
+            </div>
+            
+            <!-- Galerie de 20 images -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="gallery-item"><img src="https://i.postimg.cc/fL3bMwzr/photo-5857188129129827757-y.jpg" alt="Art by Driss Lahlou 1"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/pVz2Ccpr/photo-5857188129129827758-y.jpg" alt="Art by Driss Lahlou 2"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/T2gR0NpK/photo-5857188129129827759-y.jpg" alt="Art by Driss Lahlou 3"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/8kM14Xjs/photo-5857188129129827761-y.jpg" alt="Art by Driss Lahlou 4"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/KcBZfpRR/photo-5857188129129827762-y.jpg" alt="Art by Driss Lahlou 5"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/T2gR0Npy/photo-5857188129129827763-y.jpg" alt="Art by Driss Lahlou 6"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/FF39pC7d/photo-5857188129129827764-y.jpg" alt="Art by Driss Lahlou 7"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/7P0x9tfT/photo-5857188129129827766-y.jpg" alt="Art by Driss Lahlou 8"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/59LxgK6Q/photo-5857188129129827767-y.jpg" alt="Art by Driss Lahlou 9"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/dQrq6NLC/photo-5857188129129827768-y.jpg" alt="Art by Driss Lahlou 10"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/05D8nXbD/photo-5857188129129827769-y.jpg" alt="Art by Driss Lahlou 11"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/jqPsc3Ly/photo-5857188129129827770-y.jpg" alt="Art by Driss Lahlou 12"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/FF39pC7j/photo-5857188129129827771-y.jpg" alt="Art by Driss Lahlou 13"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/66n9cbyV/photo-5857188129129827773-y.jpg" alt="Art by Driss Lahlou 14"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/RCKMdpNQ/photo-5857188129129827774-y.jpg" alt="Art by Driss Lahlou 15"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/dQrq6NLj/photo-5857188129129827775-y.jpg" alt="Art by Driss Lahlou 16"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/66n9cbyh/photo-5857188129129827776-y.jpg" alt="Art by Driss Lahlou 17"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/9XZWbgrp/photo-5857188129129827777-y.jpg" alt="Art by Driss Lahlou 18"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/G3GcKgHz/photo-5857188129129827778-y.jpg" alt="Art by Driss Lahlou 19"></div>
+                <div class="gallery-item"><img src="https://i.postimg.cc/FF39pC7D/photo-5857188129129827779-y.jpg" alt="Art by Driss Lahlou 20"></div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <a href="https://wa.me/212614660292" target="_blank" class="inline-flex items-center gap-4 bg-green-500 text-white px-12 py-5 rounded-full font-black text-xl hover:bg-green-600 transition shadow-2xl hover:scale-105 border-4 border-white">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    Commander via WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services et Tarifs -->
+    <section id="products" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-black mb-4">خدمات PORTRAIT ART</h3>
+                <div class="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Service Portrait Classique -->
+                <div class="product-card group bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all hover:-translate-y-2">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://i.postimg.cc/FF39pC7D/photo_5857188129129827779_y.jpg" alt="بورتريه كلاسيكي من طرف ادريس لحلو">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-bold mb-3">بورتريه كلاسيكي (فحم)</h4>
+                        <p class="text-gray-500 mb-6 italic leading-relaxed">توقيع الفنان ادريس لحلو على لوحات بالفحم تجسد الهيبة والوقار.</p>
+                        <div class="flex flex-col gap-4">
+                            <span class="text-indigo-600 font-black text-3xl italic">إبتداءً من 200 DH</span>
+                            <button onclick="orderViaWhatsApp('بورتريه فحم', '200 DH')" class="bg-green-500 text-white py-4 rounded-2xl flex justify-center items-center gap-3 font-black hover:bg-green-600 transition">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Commander via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Digital -->
+                <div class="product-card group bg-white rounded-3xl shadow-xl overflow-hidden transition-all hover:-translate-y-2">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://i.postimg.cc/pVz2Ccpr/photo-5857188129129827758-y.jpg" alt="رسم ديجيتال ملون">
+                    </div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-bold mb-3">بورتريه ديجيتال</h4>
+                        <p class="text-gray-500 mb-6 italic leading-relaxed">ألوان زاهية ودقة متناهية من إبداع Driss Lahlou للطباعة الفاخرة.</p>
+                        <div class="flex flex-col gap-4">
+                            <span class="text-indigo-600 font-black text-3xl italic">إبتداءً من 300 DH</span>
+                            <button onclick="orderViaWhatsApp('بورتريه ديجيتال', '300 DH')" class="bg-green-500 text-white py-4 rounded-2xl flex justify-center items-center gap-3 font-black hover:bg-green-600 transition">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Commander via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Groupes -->
+                <div class="product-card group bg-white rounded-3xl shadow-xl overflow-hidden transition-all hover:-translate-y-2">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://i.postimg.cc/8kM14Xjs/photo-5857188129129827761-y.jpg" alt="رسم عائلي">
+                    </div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-bold mb-3">لوحات عائلية فخمة</h4>
+                        <p class="text-gray-500 mb-6 italic leading-relaxed">هدية استثنائية تجمع العائلة في كادر فني واحد من Portrait Art.</p>
+                        <div class="flex flex-col gap-4">
+                            <span class="text-indigo-600 font-black text-3xl italic">حسب التفاصيل</span>
+                            <button onclick="orderViaWhatsApp('لوحة عائلية', 'حسب التفاصيل')" class="bg-green-500 text-white py-4 rounded-2xl flex justify-center items-center gap-3 font-black hover:bg-green-600 transition">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Commander via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page / Footer -->
+    <footer class="bg-gray-950 text-white py-20 text-center">
+        <div class="container mx-auto px-4">
+            <div class="mb-10">
+                <h4 class="text-4xl font-black text-indigo-400 italic tracking-[0.2em] signature-font">PORTRAIT ART</h4>
+                <p class="text-xs font-bold text-gray-500 tracking-[0.5em] mt-2">by DRISS LAHLOU</p>
+            </div>
+            
+            <div class="flex justify-center gap-12 mb-12">
+                <a href="https://wa.me/212614660292" target="_blank" class="text-4xl hover:text-green-500 transition-all hover:scale-125"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/drisslahlou01" target="_blank" class="text-4xl hover:text-pink-500 transition-all hover:scale-125"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-4xl hover:text-blue-500 transition-all hover:scale-125"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            
+            <div class="border-t border-gray-900 pt-10">
+                <p class="text-gray-500 text-sm font-light leading-loose tracking-widest uppercase">
+                    © 2024 جميع الحقوق محفوظة للفنان **ادريس لحلو**
+                </p>
+                <div class="flex justify-center gap-4 mt-6">
+                    <div class="w-8 h-px bg-gray-800 self-center"></div>
+                    <p class="text-gray-700 text-[10px] font-black tracking-[0.3em] uppercase italic">The Art of Perfection</p>
+                    <div class="w-8 h-px bg-gray-800 self-center"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Fonction pour rediriger vers WhatsApp avec les détails de la commande
+         */
+        function orderViaWhatsApp(productName, price) {
+            const myPhoneNumber = "212614660292"; 
+            const message = `سلام عليكم فنان ادريس، شفت الموقع ديالك "Portrait Art by Driss Lahlou" وبغيت نكوموندي بورتريه:\n\n` +
+                            `🎨 الخدمة: ${productName}\n` +
+                            `💰 الثمن الموضح: ${price}\n\n` +
+                            `ممكن تقولي ليا المراحل اللي جاية؟ شكراً.`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+</body>
+</html>
