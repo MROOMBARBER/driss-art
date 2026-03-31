@@ -3,290 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portrait Art by DRISS LAHLOU - متجر رسم البورتريه</title>
+    <title>إدريس إف إكس جولد | DRISS FX GOLD - احتراف تداول الذهب</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Importation des polices arabes */
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap');
-        
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Cairo', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
             scroll-behavior: smooth;
         }
-
-        /* Effets de survol sur les images et les cartes */
-        .product-card:hover img, .gallery-item:hover img {
-            transform: scale(1.08);
+        /* Dégradés Or */
+        .gold-gradient {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
         }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background-color: #f3f4f6;
-            aspect-ratio: 3/4;
-            border: 2px solid white;
+        .gold-text {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Cartes Premium */
+        .card-premium {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(191, 149, 63, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-premium:hover {
+            border-color: #bf953f;
+            transform: translateY(-12px);
+            box-shadow: 0 15px 30px rgba(191, 149, 63, 0.15);
+        }
+        /* Boutons */
+        .btn-gold {
+            background: linear-gradient(135deg, #bf953f, #b38728);
+            color: #000;
+            font-weight: bold;
             transition: all 0.3s ease;
         }
-
-        .gallery-item:hover {
-            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
-            border-color: #4f46e5;
+        .btn-gold:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 20px rgba(191, 149, 63, 0.4);
         }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Icônes de Pack PRO */
+        .icon-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(191,149,63,0.1), rgba(191,149,63,0.05));
+            border: 1px solid rgba(191, 149, 63, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
         }
-
-        /* Arrière-plan de la section Hero */
-        .hero-bg {
-            background-image: linear-gradient(rgba(17, 24, 39, 0.82), rgba(17, 24, 39, 0.82)), url('https://i.postimg.cc/FF39pC7j/photo-5857188129129827771-y.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        .card-premium:hover .icon-container {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(191, 149, 63, 0.2);
+            box-shadow: 0 0 25px rgba(191, 149, 63, 0.4);
+            border-color: #fcf6ba;
         }
-
-        .signature-font {
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        /* Animation flottante WhatsApp */
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
-
-        /* Animation du bouton flottant WhatsApp */
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        .float-whatsapp {
-            animation: pulse-green 2s infinite;
+        .whatsapp-float {
+            animation: pulse-whatsapp 2s infinite;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="relative">
 
-    <!-- Bouton flottant WhatsApp -->
-    <a href="https://wa.me/212614660292" target="_blank" class="fixed bottom-6 right-6 z-[100] bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl float-whatsapp transition-transform hover:scale-110">
-        <i class="fa-brands fa-whatsapp text-3xl"></i>
-    </a>
+    <!-- Définition du dégradé Or pour les SVG -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <linearGradient id="gold-svg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#bf953f" />
+        <stop offset="25%" stop-color="#fcf6ba" />
+        <stop offset="50%" stop-color="#b38728" />
+        <stop offset="75%" stop-color="#fbf5b7" />
+        <stop offset="100%" stop-color="#aa771c" />
+      </linearGradient>
+    </svg>
 
     <!-- En-tête / Navigation -->
-    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex flex-col">
-                <h1 class="text-xl md:text-2xl font-black text-indigo-700 italic leading-none signature-font">PORTRAIT ART</h1>
-                <span class="text-[10px] md:text-xs font-bold text-gray-500 tracking-[0.2em] mt-1">by DRISS LAHLOU</span>
-            </div>
-            
-            <nav class="hidden lg:flex space-x-reverse space-x-8">
-                <a href="#" class="hover:text-indigo-600 font-bold transition">الرئيسية</a>
-                <a href="#products" class="hover:text-indigo-600 font-bold transition">الأسعار</a>
-                <a href="#gallery" class="hover:text-indigo-600 font-bold transition">أعمالي</a>
-                <a href="#about" class="hover:text-indigo-600 font-bold transition">عن الفنان</a>
+    <header class="fixed w-full z-40 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-black gold-text tracking-tighter">DRISS FX GOLD</div>
+            <nav class="hidden md:flex space-x-reverse space-x-8 text-sm font-semibold">
+                <a href="#home" class="hover:text-yellow-500 transition">الرئيسية</a>
+                <a href="#explanations" class="hover:text-yellow-500 transition">الشرح</a>
+                <a href="#packs" class="hover:text-yellow-500 transition">الباقات</a>
             </nav>
-            
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/212614660292" target="_blank" class="bg-green-500 text-white px-4 md:px-6 py-2 rounded-full flex items-center gap-2 hover:bg-green-600 transition shadow-lg font-bold text-sm">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span class="hidden sm:inline">Commander via WhatsApp</span>
-                </a>
-            </div>
+            <a href="#packs" class="btn-gold px-6 py-2 rounded-lg text-sm uppercase tracking-wide">ابدأ الآن</a>
         </div>
     </header>
 
-    <!-- Section Hero -->
-    <section class="hero-bg text-white py-24 md:py-40 overflow-hidden text-center relative">
-        <div class="container mx-auto px-4 relative z-10">
-            <span class="inline-block bg-indigo-600/40 backdrop-blur-sm border border-indigo-400/30 px-6 py-2 rounded-full text-xs font-bold mb-8 tracking-[0.3em] uppercase">Portrait Art by Driss Lahlou</span>
-            <h2 class="text-5xl md:text-8xl font-black mb-8 leading-tight">حوّل أغلى لحظاتك <br> للوحات فنية فخمة</h2>
-            <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto font-light leading-relaxed">إبداع بريشة الفنان **ادريس لحلو**. كنحوّلو تصاوركم للوحات مرسومة باليد وبأحدث تقنيات الديجيتال بأعلى جودة فالمغرب.</p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="#products" class="bg-white text-indigo-900 px-12 py-4 rounded-full font-bold hover:scale-105 transition shadow-2xl text-lg">شوف الأسعار</a>
-                <a href="https://wa.me/212614660292" target="_blank" class="bg-indigo-600 border border-indigo-400 text-white px-12 py-4 rounded-full font-bold hover:bg-indigo-500 transition text-lg">Commander par WhatsApp</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Services et Tarifs -->
-    <section id="products" class="py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-black mb-4">خدمات PORTRAIT ART</h3>
-                <div class="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>
-                <p class="mt-4 text-gray-500 italic">اختار النوع اللي كيناسبك واطلب دابا عبر واتساب</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <!-- Service Portrait Classique -->
-                <div class="product-card group bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all hover:-translate-y-2">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="https://i.postimg.cc/FF39pC7D/photo_5857188129129827779_y.jpg" alt="بورتريه كلاسيكي من طرف ادريس لحلو">
-                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
-                    </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-2xl font-bold mb-3">بورتريه كلاسيكي (فحم)</h4>
-                        <p class="text-gray-500 mb-6 italic leading-relaxed">توقيع الفنان ادريس لحلو على لوحات بالفحم تجسد الهيبة والوقار.</p>
-                        <div class="flex flex-col gap-4">
-                            <span class="text-indigo-600 font-black text-3xl italic">إبتداءً من 200 DH</span>
-                            <button onclick="orderViaWhatsApp('بورتريه فحم', '200 DH')" class="bg-green-500 text-white py-4 rounded-2xl flex justify-center items-center gap-3 font-black hover:bg-green-600 transition shadow-md">
-                                <i class="fa-brands fa-whatsapp text-xl"></i> Commander via WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Digital -->
-                <div class="product-card group bg-white rounded-3xl shadow-xl overflow-hidden transition-all hover:-translate-y-2">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="https://i.postimg.cc/pVz2Ccpr/photo-5857188129129827758-y.jpg" alt="رسم ديجيتال ملون">
-                    </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-2xl font-bold mb-3">بورتريه ديجيتال</h4>
-                        <p class="text-gray-500 mb-6 italic leading-relaxed">ألوان زاهية ودقة متناهية من إبداع Driss Lahlou للطباعة الفاخرة.</p>
-                        <div class="flex flex-col gap-4">
-                            <span class="text-indigo-600 font-black text-3xl italic">إبتداءً من 300 DH</span>
-                            <button onclick="orderViaWhatsApp('بورتريه ديجيتال', '300 DH')" class="bg-green-500 text-white py-4 rounded-2xl flex justify-center items-center gap-3 font-black hover:bg-green-600 transition shadow-md">
-                                <i class="fa-brands fa-whatsapp text-xl"></i> Commander via WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Groupes -->
-                <div class="product-card group bg-white rounded-3xl shadow-xl overflow-hidden transition-all hover:-translate-y-2">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="https://i.postimg.cc/8kM14Xjs/photo-5857188129129827761-y.jpg" alt="رسم عائلي">
-                    </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-2xl font-bold mb-3">لوحات عائلية فخمة</h4>
-                        <p class="text-gray-500 mb-6 italic leading-relaxed">هدية استثنائية تجمع العائلة في كادر فني واحد من Portrait Art.</p>
-                        <div class="flex flex-col gap-4">
-                            <span class="text-indigo-600 font-black text-3xl italic">حسب التفاصيل</span>
-                            <button onclick="orderViaWhatsApp('لوحة عائلية', 'حسب التفاصيل')" class="bg-green-500 text-white py-4 rounded-2xl flex justify-center items-center gap-3 font-black hover:bg-green-600 transition shadow-md">
-                                <i class="fa-brands fa-whatsapp text-xl"></i> Commander via WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Galerie d'Images -->
-    <section id="gallery" class="py-24 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h3 class="text-4xl font-black mb-4">أعمال مختارة من PORTRAIT ART</h3>
-                <div class="w-24 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>
-                <p class="mt-6 text-gray-500 max-w-xl mx-auto italic leading-relaxed text-lg">لمسة إبداعية من توقيع الفنان ادريس لحلو لكل طلبية</p>
-            </div>
-            
-            <!-- Grille de 20 images -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                <div class="gallery-item"><img src="https://i.postimg.cc/fL3bMwzr/photo-5857188129129827757-y.jpg" alt="Art par Driss Lahlou 1"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/pVz2Ccpr/photo-5857188129129827758-y.jpg" alt="Art par Driss Lahlou 2"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/T2gR0NpK/photo-5857188129129827759-y.jpg" alt="Art par Driss Lahlou 3"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/8kM14Xjs/photo-5857188129129827761-y.jpg" alt="Art par Driss Lahlou 4"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/KcBZfpRR/photo-5857188129129827762-y.jpg" alt="Art par Driss Lahlou 5"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/T2gR0Npy/photo-5857188129129827763-y.jpg" alt="Art par Driss Lahlou 6"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/FF39pC7d/photo-5857188129129827764-y.jpg" alt="Art par Driss Lahlou 7"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/7P0x9tfT/photo-5857188129129827766-y.jpg" alt="Art par Driss Lahlou 8"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/59LxgK6Q/photo-5857188129129827767-y.jpg" alt="Art par Driss Lahlou 9"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/dQrq6NLC/photo-5857188129129827768-y.jpg" alt="Art par Driss Lahlou 10"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/05D8nXbD/photo-5857188129129827769-y.jpg" alt="Art par Driss Lahlou 11"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/jqPsc3Ly/photo-5857188129129827770-y.jpg" alt="Art par Driss Lahlou 12"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/FF39pC7j/photo-5857188129129827771-y.jpg" alt="Art par Driss Lahlou 13"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/66n9cbyV/photo-5857188129129827773-y.jpg" alt="Art par Driss Lahlou 14"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/RCKMdpNQ/photo-5857188129129827774-y.jpg" alt="Art par Driss Lahlou 15"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/dQrq6NLj/photo-5857188129129827775-y.jpg" alt="Art par Driss Lahlou 16"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/66n9cbyh/photo-5857188129129827776-y.jpg" alt="Art par Driss Lahlou 17"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/9XZWbgrp/photo-5857188129129827777-y.jpg" alt="Art par Driss Lahlou 18"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/G3GcKgHz/photo-5857188129129827778-y.jpg" alt="Art par Driss Lahlou 19"></div>
-                <div class="gallery-item"><img src="https://i.postimg.cc/FF39pC7D/photo-5857188129129827779-y.jpg" alt="Art par Driss Lahlou 20"></div>
-            </div>
-
-            <div class="mt-20 text-center">
-                <a href="https://wa.me/212614660292" target="_blank" class="inline-flex items-center gap-4 bg-green-500 text-white px-12 py-5 rounded-full font-black text-xl hover:bg-green-600 transition shadow-2xl hover:scale-105 border-4 border-white">
-                    <i class="fa-brands fa-whatsapp text-3xl"></i>
-                    Commander via WhatsApp
+    <!-- Section Héro -->
+    <section id="home" class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="container mx-auto text-center relative z-10">
+            <span class="inline-block px-5 py-2 mb-6 border border-yellow-500/50 rounded-full text-yellow-500 text-sm font-bold tracking-widest uppercase bg-yellow-500/5 backdrop-blur-sm">
+                مرحباً بك في عالم احتراف التداول
+            </span>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                حقق أرباحك من تداول <br> <span class="gold-text">الذهب والعملات</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                مع DRISS FX GOLD، غانعلموك أصول التداول بالدريجة وبطريقة احترافية. انضم لأكبر مجتمع تداول في المغرب وابدأ رحلتك نحو الحرية المالية.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#packs" class="btn-gold px-10 py-4 rounded-xl text-lg shadow-lg shadow-yellow-500/20">اكتشف الباقات</a>
+                <a href="https://wa.me/212751019600" target="_blank" class="bg-[#25D366]/10 border border-[#25D366]/50 text-[#25D366] px-10 py-4 rounded-xl text-lg hover:bg-[#25D366] hover:text-white transition font-bold flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    تواصل معنا
                 </a>
             </div>
         </div>
+        
+        <!-- Éléments d'arrière-plan -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-yellow-500/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
     </section>
 
-    <!-- Section À Propos -->
-    <section id="about" class="py-24 bg-white border-b border-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <div class="relative group">
-                        <div class="absolute -inset-2 bg-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                        <img src="https://i.postimg.cc/59LxgK6Q/photo-5857188129129827767-y.jpg" alt="Driss Lahlou Studio" class="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+    <!-- Section الشرح (Explications) -->
+    <section id="explanations" class="py-24 px-6 bg-black/40 relative border-t border-b border-white/5">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">كيفاش كتمشي <span class="gold-text">الخدمة</span> معانا؟</h2>
+                <p class="text-gray-400 text-lg font-semibold italic">شرح مبسط للخطوات لي غاتبعها باش تبدا تحقق أرباحك يومياً</p>
+                <div class="w-24 h-1 gold-gradient mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Step 1 -->
+                <div class="card-premium p-8 rounded-3xl text-center relative z-10 group">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-yellow-500/20 to-transparent border border-yellow-500/30 flex items-center justify-center mb-6 text-red-500 text-5xl font-black drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] group-hover:scale-110 transition-transform">
+                        1
                     </div>
+                    <h3 class="text-2xl font-bold mb-4">اختار الباقة ديالك</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">تواصل معانا عبر الواتساب واختار الباقة لي تناسب الميزانية ديالك والأهداف ديالك فالتداول. غانعطيوك الرابط ديال الكروب VIP الخاص بينا.</p>
                 </div>
-                <div class="md:w-1/2 text-right">
-                    <span class="text-indigo-600 font-bold uppercase tracking-widest text-sm">الفنان</span>
-                    <h3 class="text-4xl font-black mt-2 mb-6">ادريس لحلو (Driss Lahlou)</h3>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
-                        أهلاً بكم في عالمي الفني. أنا **ادريس لحلو**، متخصص في رسم البورتريه بمختلف أنواعه. شغفي هو تحويل الملامح البشرية إلى قطع فنية تنبض بالحياة، سواء باستخدام الفحم الكلاسيكي، الرصاص، أو الفن الرقمي (Digital Art). كل لوحة هي قصة فريدة أرسمها بعناية فائقة لضمان رضاكم التام.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 text-center">
-                        <div class="p-4 bg-gray-50 rounded-xl">
-                            <!-- Compteur de portraits mis à jour à +5000 -->
-                            <span class="block text-3xl font-black text-indigo-600">+5000</span>
-                            <span class="text-sm text-gray-500 font-bold">لوحة منجزة</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-xl">
-                            <span class="block text-3xl font-black text-indigo-600">+10</span>
-                            <span class="text-sm text-gray-500 font-bold">سنوات خبرة</span>
-                        </div>
+
+                <!-- Step 2 -->
+                <div class="card-premium p-8 rounded-3xl text-center relative z-10 group">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-yellow-500/20 to-transparent border border-yellow-500/30 flex items-center justify-center mb-6 text-red-500 text-5xl font-black drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] group-hover:scale-110 transition-transform">
+                        2
                     </div>
+                    <h3 class="text-2xl font-bold mb-4">تعلم الأساسيات</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">مبتدئ؟ ماكاينش مشكل! غادي نعطيوك دروس وشروحات مبسطة بالدارجة باش تفهم المارشي كيفاش غادي وتعرف تفتح وتسد الصفقات ديالك.</p>
                 </div>
+
+                <!-- Step 3 -->
+                <div class="card-premium p-8 rounded-3xl text-center relative z-10 group">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-yellow-500/20 to-transparent border border-yellow-500/30 flex items-center justify-center mb-6 text-red-500 text-5xl font-black drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] group-hover:scale-110 transition-transform">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">طبق التوصيات واربح</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">فالكروب VIP، غاتبدا توصل بصفقات (Signals) دقيقة ومدروسة. كوپي، كولي، سد الصفقة على ربح، وسحب فلوسك بكل سهولة!</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section des Packs (Prix) -->
+    <section id="packs" class="py-24 px-6 relative">
+        <div class="container mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">باقات الاشتراك</h2>
+                <p class="text-gray-400 text-lg font-semibold italic">اختار الباقة اللي غاتبدل ليك حياتك</p>
+                <div class="w-24 h-1 gold-gradient mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
+                
+                <!-- Pack Derwich (Mensuel) -->
+                <div class="card-premium p-10 rounded-[2.5rem] flex flex-col h-[550px] relative group">
+                    <div class="icon-container">
+                        <!-- Icône Fusée -->
+                        <svg class="w-10 h-10" fill="none" stroke="url(#gold-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5a5.4 5.4 0 0 0 1-1.5c1.6-1.6 4.1-4.3 6.6-6.8a5.2 5.2 0 0 0-7.3-7.3c-2.5 2.5-5.2 5-6.8 6.6a5.4 5.4 0 0 0-1.5 1z"></path>
+                            <path d="m12 15 3.3 3.3a1 1 0 0 0 1.6-.3l.6-1.5a2 2 0 0 1 1.1-1.1l1.5-.6a1 1 0 0 0 .3-1.6L17 9"></path>
+                            <path d="m9 11-4.8-4.8a1 1 0 0 1 .3-1.6l1.5-.6a2 2 0 0 0 1.1-1.1l.6-1.5a1 1 0 0 1 1.6-.3L14 6"></path>
+                            <path d="M14 6v6h6"></path>
+                        </svg>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h3 class="text-2xl font-bold mb-1">PACK DERWICH</h3>
+                        <p class="text-yellow-500/80 text-sm font-semibold uppercase tracking-wider">الاشتراك الشهري</p>
+                    </div>
+                    <div class="text-5xl font-black mb-8 flex items-end">
+                        <span class="gold-text">199</span>
+                        <span class="text-xl text-gray-500 font-normal ml-2 mb-1">درهم / شهر</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-gray-300 font-medium">
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> توصيات يومية في الذهب</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> دعم فني 24/7</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> دخول لقناة التلغرام</li>
+                    </ul>
+                    <a href="https://wa.me/212751019600" target="_blank" class="w-full py-4 rounded-xl border border-yellow-500/50 text-center font-bold hover:bg-yellow-500 hover:text-black transition uppercase tracking-widest mt-auto">اشترك الآن</a>
+                </div>
+
+                <!-- Pack VIP (Annuel) - Mise en avant -->
+                <div class="card-premium p-10 rounded-[2.5rem] flex flex-col h-[600px] relative overflow-hidden border-yellow-500 shadow-[0_0_40px_rgba(191,149,63,0.15)] lg:scale-105 z-10 group">
+                    <div class="absolute top-0 right-0 gold-gradient text-black text-xs px-10 py-2 font-black transform translate-x-10 translate-y-6 rotate-45 uppercase shadow-lg">موصى به</div>
+                    
+                    <div class="icon-container border-yellow-400 bg-yellow-500/10">
+                        <!-- Icône Couronne -->
+                        <svg class="w-10 h-10" fill="none" stroke="url(#gold-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 4h20"></path>
+                            <path d="m2 8 3 11h14l3-11-6 4-4-7-4 7-6-4z"></path>
+                            <circle cx="12" cy="19" r="2" fill="#bf953f" stroke="none"></circle>
+                        </svg>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h3 class="text-3xl font-black mb-1 gold-text">PACK VIP</h3>
+                        <p class="text-yellow-500 text-sm font-bold uppercase tracking-wider">اشتراك لمدة سنة كاملة</p>
+                    </div>
+                    <div class="text-6xl font-black mb-8 flex items-end">
+                        <span class="gold-text">1000</span>
+                        <span class="text-xl text-gray-400 font-normal ml-2 mb-2">درهم / سنة</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-white font-medium">
+                        <li class="flex items-center gap-3"><span class="text-yellow-400 text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">★</span> جميع ميزات باقة درويش</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-400 text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">★</span> دورة تعليمية أساسية</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-400 text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">★</span> تحليل فني أسبوعي مباشر</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-400 text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">★</span> توفير 40% من قيمة الشهري</li>
+                    </ul>
+                    <a href="https://wa.me/212751019600" target="_blank" class="w-full py-5 rounded-xl btn-gold text-center text-lg font-black transition shadow-[0_10px_20px_rgba(191,149,63,0.3)] uppercase tracking-widest mt-auto">انضم لـ VIP</a>
+                </div>
+
+                <!-- Pack MAX (À vie) -->
+                <div class="card-premium p-10 rounded-[2.5rem] flex flex-col h-[550px] relative group">
+                    <div class="icon-container">
+                        <!-- Icône Diamant -->
+                        <svg class="w-10 h-10" fill="none" stroke="url(#gold-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"></path>
+                            <path d="m2 12 10-10"></path>
+                            <path d="m22 12-10-10"></path>
+                            <path d="m2 12 10 10"></path>
+                            <path d="m22 12-10 10"></path>
+                            <path d="m12 2 4 10-4 10-4-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h3 class="text-2xl font-bold mb-1">PACK MAX</h3>
+                        <p class="text-yellow-500/80 text-sm font-semibold uppercase tracking-wider">مدى الحياة - LIFETIME</p>
+                    </div>
+                    <div class="text-5xl font-black mb-8 flex items-end">
+                        <span class="gold-text">3000</span>
+                        <span class="text-xl text-gray-500 font-normal ml-2 mb-1">درهم / للأبد</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-gray-300 font-medium">
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> وصول نهائي وغير محدود</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> استراتيجيات الذهب الخاصة</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> جلسات كوتشينغ خاصة</li>
+                        <li class="flex items-center gap-3"><span class="text-yellow-500 text-lg">✔</span> متابعة خاصة للمحفظة</li>
+                    </ul>
+                    <a href="https://wa.me/212751019600" target="_blank" class="w-full py-4 rounded-xl border border-yellow-500/50 text-center font-bold hover:bg-yellow-500 hover:text-black transition uppercase tracking-widest mt-auto">كن من النخبة</a>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Pied de page -->
-    <footer class="bg-gray-950 text-white py-20 text-center">
-        <div class="container mx-auto px-4">
-            <div class="mb-10">
-                <h4 class="text-4xl font-black text-indigo-400 italic tracking-[0.2em] signature-font">PORTRAIT ART</h4>
-                <p class="text-xs font-bold text-gray-500 tracking-[0.5em] mt-2">by DRISS LAHLOU</p>
-            </div>
-            
-            <div class="flex justify-center gap-12 mb-12">
-                <a href="https://wa.me/212614660292" target="_blank" class="text-4xl hover:text-green-500 transition-all hover:scale-125"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/drisslahlou01" target="_blank" class="text-4xl hover:text-pink-500 transition-all hover:scale-125"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="text-4xl hover:text-blue-500 transition-all hover:scale-125"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            
-            <div class="border-t border-gray-900 pt-10">
-                <p class="text-gray-500 text-sm font-light leading-loose tracking-widest uppercase">
-                    © 2024 جميع الحقوق محفوظة للفنان **ادريس لحلو**
-                </p>
-            </div>
-        </div>
+    <footer class="py-10 border-t border-white/5 text-center px-6">
+        <div class="text-2xl font-black gold-text mb-4">DRISS FX GOLD</div>
+        <p class="text-gray-500 text-sm mb-6 max-w-xl mx-auto italic">
+            تحذير من المخاطر: التداول فيه مخاطرة عالية على رأس المال. حنا كنعطيوك الأدوات ولكن أنت المسؤول على قراراتك المالية.
+        </p>
+        <div class="text-xs text-gray-600">© 2026 جميع الحقوق محفوظة لمنصة إدريس إف إكس جولد.</div>
     </footer>
 
-    <script>
-        /**
-         * Fonction de redirection vers WhatsApp avec les détails du portrait choisi
-         */
-        function orderViaWhatsApp(productName, price) {
-            const myPhoneNumber = "212614660292"; 
-            const message = `سلام عليكم فنان ادريس، شفت الموقع ديالك "Portrait Art by Driss Lahlou" وبغيت نكوموندي بورتريه:\n\n` +
-                            `🎨 الخدمة: ${productName}\n` +
-                            `💰 الثمن الموضح: ${price}\n\n` +
-                            `ممكن تقولي ليا المراحل اللي جاية؟ شكراً.`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
-            window.open(whatsappURL, '_blank');
-        }
-    </script>
+    <!-- Bouton WhatsApp Flottant -->
+    <a href="https://wa.me/212751019600" target="_blank" class="whatsapp-float fixed bottom-6 right-6 md:bottom-10 md:right-10 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 z-50 group">
+        <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <!-- Info-bulle (Tooltip) -->
+        <span class="absolute right-20 bg-white text-black text-sm font-bold py-2 px-4 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl">
+            تواصل معنا عبر الواتساب
+        </span>
+    </a>
 
 </body>
 </html>
+
+
+
+
+
