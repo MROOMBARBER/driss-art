@@ -41,11 +41,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .emerald-text {
-            background: linear-gradient(135deg, #10b981, #34d399, #059669);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
         .purple-text {
             background: linear-gradient(135deg, #8b5cf6, #c4b5fd, #6d28d9);
             -webkit-background-clip: text;
@@ -60,13 +55,6 @@
         }
 
         /* Styles spécifiques des packs */
-        .card-emerald { border: 1px solid rgba(16, 185, 129, 0.3); }
-        .card-emerald:hover {
-            border-color: #10b981;
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
-        }
-
         .card-gold { border: 1px solid rgba(191, 149, 63, 0.5); box-shadow: 0 0 20px rgba(191, 149, 63, 0.1); }
         .card-gold:hover {
             border-color: #fcf6ba;
@@ -103,7 +91,6 @@
             100% { transform: translateY(0px); }
         }
         .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
 
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 15px rgba(191, 149, 63, 0.2); }
@@ -131,10 +118,6 @@
         <stop offset="0%" stop-color="#bf953f" />
         <stop offset="50%" stop-color="#fcf6ba" />
         <stop offset="100%" stop-color="#aa771c" />
-      </linearGradient>
-      <linearGradient id="emerald-svg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#10b981" />
-        <stop offset="100%" stop-color="#059669" />
       </linearGradient>
       <linearGradient id="purple-svg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#8b5cf6" />
@@ -172,34 +155,11 @@
     <section id="packs" class="py-12 px-6 relative z-10">
         <div class="container mx-auto">
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
+            <!-- Beddelna l'grid bach yjiw 2 packs m9addin f lwest -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
                 
-                <!-- Pack Derwich (Emerald) -->
-                <div class="card-base card-emerald animate-float p-10 rounded-[2.5rem] flex flex-col min-h-[400px] relative group">
-                    <div class="mb-6 flex justify-between items-start">
-                        <div>
-                            <h3 class="text-2xl font-bold mb-1 emerald-text">PACK DERWICH</h3>
-                            <p class="text-emerald-500/80 text-sm font-semibold uppercase tracking-wider">الاشتراك الشهري</p>
-                        </div>
-                        <svg class="w-12 h-12" fill="none" stroke="url(#emerald-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5a5.4 5.4 0 0 0 1-1.5c1.6-1.6 4.1-4.3 6.6-6.8a5.2 5.2 0 0 0-7.3-7.3c-2.5 2.5-5.2 5-6.8 6.6a5.4 5.4 0 0 0-1.5 1z"></path><path d="m12 15 3.3 3.3a1 1 0 0 0 1.6-.3l.6-1.5a2 2 0 0 1 1.1-1.1l1.5-.6a1 1 0 0 0 .3-1.6L17 9"></path><path d="m9 11-4.8-4.8a1 1 0 0 1 .3-1.6l1.5-.6a2 2 0 0 0 1.1-1.1l.6-1.5a1 1 0 0 1 1.6-.3L14 6"></path><path d="M14 6v6h6"></path></svg>
-                    </div>
-                    
-                    <div class="text-5xl font-black mb-8 flex items-end">
-                        <span class="text-white">199</span>
-                        <span class="text-xl text-gray-400 font-normal ml-2 mb-1">درهم / شهر</span>
-                    </div>
-                    <ul class="space-y-5 mb-10 flex-grow text-gray-300 font-medium text-lg">
-                        <li class="flex items-center gap-3">
-                            <span class="text-emerald-500">✔</span> 1 à 5 signals par jours max
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-emerald-500">✔</span> Assistance de Lundi à Vendredi
-                        </li>
-                    </ul>
-                </div>
-
                 <!-- Pack VIP (Gold) -->
-                <div class="card-base card-gold animate-pulse-glow p-10 rounded-[2.5rem] flex flex-col min-h-[450px] relative overflow-hidden lg:scale-110 z-20 group">
+                <div class="card-base card-gold animate-pulse-glow p-10 rounded-[2.5rem] flex flex-col min-h-[450px] relative overflow-hidden lg:scale-105 z-20 group">
                     <div class="absolute top-0 right-0 bg-yellow-500 text-black text-xs px-10 py-1.5 font-black transform translate-x-10 translate-y-6 rotate-45 uppercase tracking-widest shadow-lg">موصى به</div>
                     
                     <div class="mb-6 flex justify-between items-start">
@@ -225,7 +185,7 @@
                 </div>
 
                 <!-- Pack MAX (Purple) -->
-                <div class="card-base card-purple animate-float-delayed p-10 rounded-[2.5rem] flex flex-col min-h-[400px] relative group">
+                <div class="card-base card-purple animate-float p-10 rounded-[2.5rem] flex flex-col min-h-[450px] relative group">
                     <div class="mb-6 flex justify-between items-start">
                         <div>
                             <h3 class="text-2xl font-bold mb-1 purple-text">PACK MAX</h3>
@@ -268,7 +228,7 @@
                     <div class="text-yellow-500 text-6xl font-black mb-4 opacity-50">01</div>
                     <h3 class="text-2xl font-bold mb-3 text-white">الانخراط في الباقة</h3>
                     <p class="text-gray-400 leading-relaxed text-lg">
-                        كتختار الباقة لي تناسبك من الفوق (شهري، سنوي ولا مدى الحياة). كتصيفط لينا رسالة فـ الواتساب، كتدفع، و كاندخلوك نيشان للكروب VIP الخاص بينا.
+                        كتختار الباقة لي تناسبك من الفوق (سنوي ولا مدى الحياة). كتصيفط لينا رسالة فـ الواتساب، كتدفع، و كاندخلوك نيشان للكروب VIP الخاص بينا.
                     </p>
                 </div>
 
