@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Mots-clés (Kib9aw mkhabyin) -->
-    <meta name="description" content="DRISS FX GOLD - Best group trading in morocco. احتراف تداول الذهب والعملات.">
+    <meta name="description" content="DRISS FX GOLD - Best group trading in morocco. احتراف تداول الذهب والعملات. أرباح يومية تصل إلى 3000 درهم.">
     <meta name="keywords" content="Driss fx gold, Driss gold trading, Best group trading in morocco, Trading maroc group, Trading maroc">
     
     <!-- Open Graph / Facebook / Instagram / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://drissart.com/">
     <meta property="og:title" content="إدريس إف إكس جولد | DRISS FX GOLD - احتراف تداول الذهب">
-    <meta property="og:description" content="مع DRISS FX GOLD، غانعلموك أصول التداول بالدريجة وبطريقة احترافية. انضم لأكبر مجتمع تداول في المغرب وابدأ رحلتك نحو الحرية المالية.">
+    <meta property="og:description" content="انضم لأكبر مجتمع تداول في المغرب وابدأ رحلتك نحو الحرية المالية. أرباح يومية تصل إلى 3000 درهم.">
     <meta property="og:image" content="https://i.postimg.cc/RV8MNCLG/5A6E5852-1B0F-4ACF-AAAB-2B37A85D725E-A07351E1-F219-488A-B89A-4ADDAEF6CB73.jpg">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://drissart.com/">
     <meta name="twitter:title" content="إدريس إف إكس جولد | DRISS FX GOLD - احتراف تداول الذهب">
-    <meta name="twitter:description" content="مع DRISS FX GOLD، غانعلموك أصول التداول بالدريجة وبطريقة احترافية. انضم لأكبر مجتمع تداول في المغرب وابدأ رحلتك نحو الحرية المالية.">
+    <meta name="twitter:description" content="انضم لأكبر مجتمع تداول في المغرب وابدأ رحلتك نحو الحرية المالية. أرباح يومية تصل إلى 3000 درهم.">
     <meta name="twitter:image" content="https://i.postimg.cc/RV8MNCLG/5A6E5852-1B0F-4ACF-AAAB-2B37A85D725E-A07351E1-F219-488A-B89A-4ADDAEF6CB73.jpg">
 
-    <title>إدريس إف إكس جولد | DRISS FX GOLD - احتراف تداول الذهب</title>
+    <title>إدريس إف إكس جولد | DRISS FX GOLD</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -54,50 +54,46 @@
 
         /* Cartes Premium de Base */
         .card-base {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Styles spécifiques des cartes */
-        .card-emerald {
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
+        /* Styles spécifiques des packs */
+        .card-emerald { border: 1px solid rgba(16, 185, 129, 0.3); }
         .card-emerald:hover {
             border-color: #10b981;
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
         }
 
-        .card-gold {
-            border: 1px solid rgba(191, 149, 63, 0.5);
-            box-shadow: 0 0 20px rgba(191, 149, 63, 0.1);
-        }
+        .card-gold { border: 1px solid rgba(191, 149, 63, 0.5); box-shadow: 0 0 20px rgba(191, 149, 63, 0.1); }
         .card-gold:hover {
             border-color: #fcf6ba;
             transform: translateY(-12px) scale(1.05);
             box-shadow: 0 20px 40px rgba(191, 149, 63, 0.3);
         }
 
-        .card-purple {
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
+        .card-purple { border: 1px solid rgba(139, 92, 246, 0.3); }
         .card-purple:hover {
             border-color: #8b5cf6;
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 15px 35px rgba(139, 92, 246, 0.2);
         }
 
-        /* Boutons */
-        .btn-gold {
-            background: linear-gradient(135deg, #bf953f, #b38728);
-            color: #000;
-            font-weight: bold;
+        /* Step Cards (A to Z) */
+        .step-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .btn-gold:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 20px rgba(191, 149, 63, 0.4);
+        .step-card:hover {
+            border-color: rgba(191, 149, 63, 0.4);
+            transform: translateY(-5px);
+            background: linear-gradient(180deg, rgba(191,149,63,0.1) 0%, rgba(0,0,0,0.5) 100%);
         }
 
         /* Animations CSS */
@@ -106,44 +102,30 @@
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-            animation: float 6s ease-in-out 3s infinite;
-        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
 
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 15px rgba(191, 149, 63, 0.2); }
             50% { box-shadow: 0 0 40px rgba(191, 149, 63, 0.6); }
             100% { box-shadow: 0 0 15px rgba(191, 149, 63, 0.2); }
         }
-        .animate-pulse-glow {
-            animation: pulse-glow 3s infinite;
-        }
-
-        @keyframes pulse-whatsapp {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        .whatsapp-float {
-            animation: pulse-whatsapp 2s infinite;
-        }
+        .animate-pulse-glow { animation: pulse-glow 3s infinite; }
     </style>
 </head>
-<body class="relative">
+<body class="relative antialiased">
 
     <!-- Background Video Fixe -->
     <div class="fixed top-0 left-0 w-full h-full z-[-50] overflow-hidden pointer-events-none">
         <video autoplay loop muted playsinline disablePictureInPicture class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none">
             <source src="https://files.catbox.moe/g3a29t.mp4" type="video/mp4">
         </video>
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/80"></div>
+        <!-- Overlay k7el -->
+        <div class="absolute inset-0 bg-black/85"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black"></div>
     </div>
 
-    <!-- SVG Gradients Definitions pour les icônes -->
+    <!-- SVG Gradients -->
     <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
       <linearGradient id="gold-svg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#bf953f" />
@@ -160,208 +142,190 @@
       </linearGradient>
     </svg>
 
-    <!-- En-tête / Navigation -->
-    <header class="fixed w-full z-40 bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black gold-text tracking-tighter">DRISS FX GOLD</div>
-            <nav class="hidden md:flex space-x-reverse space-x-8 text-sm font-semibold">
-                <a href="#home" class="hover:text-yellow-500 transition">الرئيسية</a>
-                <a href="#packs" class="hover:text-yellow-500 transition">الباقات</a>
-                <a href="#explanations" class="hover:text-yellow-500 transition">الشرح</a>
-            </nav>
-            <a href="#packs" class="btn-gold px-6 py-2 rounded-lg text-sm uppercase tracking-wide">ابدأ الآن</a>
+    <!-- En-tête -->
+    <header class="w-full z-40 py-6">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-3xl font-black gold-text tracking-widest uppercase">DRISS FX GOLD</div>
         </div>
     </header>
 
-    <!-- Section Héro -->
-    <section id="home" class="relative pt-32 pb-20 px-6 overflow-hidden">
-        <div class="container mx-auto text-center relative z-10">
-            <span class="inline-block px-5 py-2 mb-6 border border-yellow-500/50 rounded-full text-yellow-500 text-sm font-bold tracking-widest uppercase bg-yellow-500/5 backdrop-blur-sm">
-                مرحباً بك في عالم احتراف التداول
-            </span>
-            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                حقق أرباحك من تداول <br> <span class="gold-text">الذهب والعملات</span>
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                مع DRISS FX GOLD، غانعلموك أصول التداول بالدريجة وبطريقة احترافية. انضم لأكبر مجتمع تداول في المغرب وابدأ رحلتك نحو الحرية المالية.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#packs" class="btn-gold px-10 py-4 rounded-xl text-lg shadow-lg shadow-yellow-500/20">اكتشف الباقات</a>
-                <a href="https://wa.me/212751019600" target="_blank" class="bg-[#25D366]/10 border border-[#25D366]/50 text-[#25D366] px-10 py-4 rounded-xl text-lg hover:bg-[#25D366] hover:text-white transition font-bold flex items-center justify-center gap-2">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-                    تواصل معنا
-                </a>
+    <!-- Section Héro (L'accroche) -->
+    <section class="relative pt-10 pb-16 px-6">
+        <div class="container mx-auto text-center relative z-10 max-w-4xl">
+            <div class="inline-flex items-center gap-2 px-5 py-2 mb-8 border border-yellow-500/30 rounded-full bg-yellow-500/10 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-yellow-400 text-sm font-bold tracking-widest">أفضل مجموعة تداول في المغرب</span>
             </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                أرباح يومية كتوصل تال <br> <span class="gold-text">3000 درهم</span>
+            </h1>
+            
+            <p class="text-gray-300 text-lg md:text-2xl mb-10 leading-relaxed font-medium">
+                ماعليك غير تطبق الإشارات ديالنا (Signals) فالتليفون ديالك. 
+                غانوريوك كلشي خطوة بخطوة بالدريجة واخا تكون يلاه بادي.
+            </p>
         </div>
-        
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-yellow-500/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
     </section>
 
-    <!-- Section des Packs (Prix) - NOW BEFORE EXPLANATIONS -->
-    <section id="packs" class="py-24 px-6 relative border-t border-white/5">
+    <!-- Section الباقات (Packs en Premier) -->
+    <section id="packs" class="py-12 px-6 relative z-10">
         <div class="container mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">باقات الاشتراك</h2>
-                <p class="text-gray-400 text-lg font-semibold italic">اختار الباقة اللي غاتبدل ليك حياتك</p>
-                <div class="w-24 h-1 gold-gradient mx-auto mt-6 rounded-full"></div>
-            </div>
-
+            
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
                 
                 <!-- Pack Derwich (Emerald) -->
-                <div class="card-base card-emerald animate-float p-10 rounded-[2.5rem] flex flex-col min-h-[450px] relative group">
-                    <div class="w-20 h-20 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <svg class="w-10 h-10" fill="none" stroke="url(#emerald-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5a5.4 5.4 0 0 0 1-1.5c1.6-1.6 4.1-4.3 6.6-6.8a5.2 5.2 0 0 0-7.3-7.3c-2.5 2.5-5.2 5-6.8 6.6a5.4 5.4 0 0 0-1.5 1z"></path>
-                            <path d="m12 15 3.3 3.3a1 1 0 0 0 1.6-.3l.6-1.5a2 2 0 0 1 1.1-1.1l1.5-.6a1 1 0 0 0 .3-1.6L17 9"></path>
-                            <path d="m9 11-4.8-4.8a1 1 0 0 1 .3-1.6l1.5-.6a2 2 0 0 0 1.1-1.1l.6-1.5a1 1 0 0 1 1.6-.3L14 6"></path>
-                            <path d="M14 6v6h6"></path>
-                        </svg>
+                <div class="card-base card-emerald animate-float p-10 rounded-[2.5rem] flex flex-col min-h-[400px] relative group">
+                    <div class="mb-6 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-1 emerald-text">PACK DERWICH</h3>
+                            <p class="text-emerald-500/80 text-sm font-semibold uppercase tracking-wider">الاشتراك الشهري</p>
+                        </div>
+                        <svg class="w-12 h-12" fill="none" stroke="url(#emerald-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5a5.4 5.4 0 0 0 1-1.5c1.6-1.6 4.1-4.3 6.6-6.8a5.2 5.2 0 0 0-7.3-7.3c-2.5 2.5-5.2 5-6.8 6.6a5.4 5.4 0 0 0-1.5 1z"></path><path d="m12 15 3.3 3.3a1 1 0 0 0 1.6-.3l.6-1.5a2 2 0 0 1 1.1-1.1l1.5-.6a1 1 0 0 0 .3-1.6L17 9"></path><path d="m9 11-4.8-4.8a1 1 0 0 1 .3-1.6l1.5-.6a2 2 0 0 0 1.1-1.1l.6-1.5a1 1 0 0 1 1.6-.3L14 6"></path><path d="M14 6v6h6"></path></svg>
                     </div>
-                    <div class="mb-4">
-                        <h3 class="text-2xl font-bold mb-1 emerald-text">PACK DERWICH</h3>
-                        <p class="text-emerald-500/80 text-sm font-semibold uppercase tracking-wider">الاشتراك الشهري</p>
-                    </div>
+                    
                     <div class="text-5xl font-black mb-8 flex items-end">
                         <span class="text-white">199</span>
                         <span class="text-xl text-gray-400 font-normal ml-2 mb-1">درهم / شهر</span>
                     </div>
-                    <ul class="space-y-5 mb-10 flex-grow text-gray-300 font-medium">
-                        <li class="flex items-start gap-3">
-                            <span class="text-emerald-500 mt-1">✔</span> 
-                            <span>1 à 5 signals par jours max</span>
+                    <ul class="space-y-5 mb-10 flex-grow text-gray-300 font-medium text-lg">
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500">✔</span> 1 à 5 signals par jours max
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-emerald-500 mt-1">✔</span> 
-                            <span>Assistance de Lundi à Vendredi</span>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500">✔</span> Assistance de Lundi à Vendredi
                         </li>
                     </ul>
-                    <a href="https://wa.me/212751019600" target="_blank" class="w-full py-4 rounded-xl border border-emerald-500/50 text-emerald-400 text-center font-bold hover:bg-emerald-500 hover:text-white transition-all uppercase tracking-widest mt-auto">اشترك الآن</a>
                 </div>
 
-                <!-- Pack VIP (Gold) - Animé et au milieu -->
-                <div class="card-base card-gold animate-pulse-glow p-10 rounded-[2.5rem] flex flex-col min-h-[500px] relative overflow-hidden lg:scale-110 z-10 group">
-                    <div class="absolute top-0 right-0 gold-gradient text-black text-xs px-10 py-2 font-black transform translate-x-10 translate-y-6 rotate-45 uppercase shadow-lg">موصى به</div>
+                <!-- Pack VIP (Gold) -->
+                <div class="card-base card-gold animate-pulse-glow p-10 rounded-[2.5rem] flex flex-col min-h-[450px] relative overflow-hidden lg:scale-110 z-20 group">
+                    <div class="absolute top-0 right-0 bg-yellow-500 text-black text-xs px-10 py-1.5 font-black transform translate-x-10 translate-y-6 rotate-45 uppercase tracking-widest shadow-lg">موصى به</div>
                     
-                    <div class="w-20 h-20 rounded-2xl bg-yellow-500/10 border border-yellow-400/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
-                        <svg class="w-10 h-10" fill="none" stroke="url(#gold-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 4h20"></path>
-                            <path d="m2 8 3 11h14l3-11-6 4-4-7-4 7-6-4z"></path>
-                            <circle cx="12" cy="19" r="2" fill="#bf953f" stroke="none"></circle>
-                        </svg>
+                    <div class="mb-6 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-3xl font-black mb-1 gold-text">PACK VIP</h3>
+                            <p class="text-yellow-500 text-sm font-bold uppercase tracking-wider">اشتراك سنة كاملة</p>
+                        </div>
+                        <svg class="w-14 h-14" fill="none" stroke="url(#gold-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 4h20"></path><path d="m2 8 3 11h14l3-11-6 4-4-7-4 7-6-4z"></path><circle cx="12" cy="19" r="2" fill="#bf953f" stroke="none"></circle></svg>
                     </div>
-                    <div class="mb-4">
-                        <h3 class="text-3xl font-black mb-1 gold-text">PACK VIP</h3>
-                        <p class="text-yellow-500 text-sm font-bold uppercase tracking-wider">اشتراك لمدة سنة كاملة</p>
-                    </div>
+
                     <div class="text-6xl font-black mb-8 flex items-end">
                         <span class="gold-text">1000</span>
                         <span class="text-xl text-gray-400 font-normal ml-2 mb-2">درهم / سنة</span>
                     </div>
-                    <ul class="space-y-5 mb-10 flex-grow text-white font-medium">
-                        <li class="flex items-start gap-3">
-                            <span class="text-yellow-400 text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] mt-0.5">★</span> 
-                            <span>1 à 5 signals par jours max</span>
+                    <ul class="space-y-5 mb-10 flex-grow text-white font-medium text-lg">
+                        <li class="flex items-center gap-3">
+                            <span class="text-yellow-400 drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">★</span> 1 à 5 signals par jours max
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-yellow-400 text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] mt-0.5">★</span> 
-                            <span>Assistance de Lundi à Vendredi</span>
+                        <li class="flex items-center gap-3">
+                            <span class="text-yellow-400 drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">★</span> Assistance de Lundi à Vendredi
                         </li>
                     </ul>
-                    <a href="https://wa.me/212751019600" target="_blank" class="w-full py-5 rounded-xl btn-gold text-center text-lg font-black transition shadow-[0_10px_20px_rgba(191,149,63,0.3)] uppercase tracking-widest mt-auto">انضم لـ VIP</a>
                 </div>
 
                 <!-- Pack MAX (Purple) -->
-                <div class="card-base card-purple animate-float-delayed p-10 rounded-[2.5rem] flex flex-col min-h-[450px] relative group">
-                    <div class="w-20 h-20 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <svg class="w-10 h-10" fill="none" stroke="url(#purple-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"></path>
-                            <path d="m2 12 10-10"></path>
-                            <path d="m22 12-10-10"></path>
-                            <path d="m2 12 10 10"></path>
-                            <path d="m22 12-10 10"></path>
-                            <path d="m12 2 4 10-4 10-4-10z"></path>
-                        </svg>
+                <div class="card-base card-purple animate-float-delayed p-10 rounded-[2.5rem] flex flex-col min-h-[400px] relative group">
+                    <div class="mb-6 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-1 purple-text">PACK MAX</h3>
+                            <p class="text-purple-500/80 text-sm font-semibold uppercase tracking-wider">مدى الحياة - LIFETIME</p>
+                        </div>
+                        <svg class="w-12 h-12" fill="none" stroke="url(#purple-svg-gradient)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"></path><path d="m2 12 10-10"></path><path d="m22 12-10-10"></path><path d="m2 12 10 10"></path><path d="m22 12-10 10"></path><path d="m12 2 4 10-4 10-4-10z"></path></svg>
                     </div>
-                    <div class="mb-4">
-                        <h3 class="text-2xl font-bold mb-1 purple-text">PACK MAX</h3>
-                        <p class="text-purple-500/80 text-sm font-semibold uppercase tracking-wider">مدى الحياة - LIFETIME</p>
-                    </div>
+
                     <div class="text-5xl font-black mb-8 flex items-end">
                         <span class="text-white">3000</span>
                         <span class="text-xl text-gray-400 font-normal ml-2 mb-1">درهم / للأبد</span>
                     </div>
-                    <ul class="space-y-5 mb-10 flex-grow text-gray-300 font-medium">
-                        <li class="flex items-start gap-3">
-                            <span class="text-purple-500 mt-1">✔</span> 
-                            <span>1 à 5 signals par jours max</span>
+                    <ul class="space-y-5 mb-10 flex-grow text-gray-300 font-medium text-lg">
+                        <li class="flex items-center gap-3">
+                            <span class="text-purple-500">✔</span> 1 à 5 signals par jours max
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-purple-500 mt-1">✔</span> 
-                            <span>Assistance de Lundi à Vendredi</span>
+                        <li class="flex items-center gap-3">
+                            <span class="text-purple-500">✔</span> Assistance de Lundi à Vendredi
                         </li>
                     </ul>
-                    <a href="https://wa.me/212751019600" target="_blank" class="w-full py-4 rounded-xl border border-purple-500/50 text-purple-400 text-center font-bold hover:bg-purple-500 hover:text-white transition-all uppercase tracking-widest mt-auto">كن من النخبة</a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Section الشرح (Explications) - NOW AT THE BOTTOM -->
-    <section id="explanations" class="py-24 px-6 bg-black/40 relative border-t border-b border-white/5">
-        <div class="container mx-auto max-w-6xl">
+    <!-- Section الشرح المفصل (A to Z) -->
+    <section id="explanations" class="py-24 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">كيفاش كتمشي <span class="gold-text">الخدمة</span> معانا؟</h2>
-                <p class="text-gray-400 text-lg font-semibold italic">شرح مبسط للخطوات لي غاتبعها باش تبدا تحقق أرباحك يومياً</p>
-                <div class="w-24 h-1 gold-gradient mx-auto mt-6 rounded-full"></div>
+                <h2 class="text-4xl md:text-5xl font-black mb-4">كيفاش كتمشي <span class="gold-text">الخدمة</span> من الألف للياء؟</h2>
+                <p class="text-gray-400 text-xl">شرح مفصل وواضح باش تعرف بالضبط شنو غادير</p>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-6 rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="card-base card-gold p-8 rounded-3xl text-center relative z-10 group">
-                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-yellow-500/20 to-transparent border border-yellow-500/30 flex items-center justify-center mb-6 text-yellow-500 text-5xl font-black drop-shadow-[0_0_15px_rgba(191,149,63,0.5)] group-hover:scale-110 transition-transform">
-                        1
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">اختار الباقة ديالك</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">تواصل معانا عبر الواتساب واختار الباقة لي تناسب الميزانية ديالك والأهداف ديالك فالتداول. غانعطيوك الرابط ديال الكروب VIP الخاص بينا.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Step 1 -->
+                <div class="step-card p-8">
+                    <div class="text-yellow-500 text-6xl font-black mb-4 opacity-50">01</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">الانخراط في الباقة</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        كتختار الباقة لي تناسبك من الفوق (شهري، سنوي ولا مدى الحياة). كتصيفط لينا رسالة فـ الواتساب، كتدفع، و كاندخلوك نيشان للكروب VIP الخاص بينا.
+                    </p>
                 </div>
 
-                <div class="card-base card-gold p-8 rounded-3xl text-center relative z-10 group">
-                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-yellow-500/20 to-transparent border border-yellow-500/30 flex items-center justify-center mb-6 text-yellow-500 text-5xl font-black drop-shadow-[0_0_15px_rgba(191,149,63,0.5)] group-hover:scale-110 transition-transform">
-                        2
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">تعلم الأساسيات</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">مبتدئ؟ ماكاينش مشكل! غادي نعطيوك دروس وشروحات مبسطة بالدارجة باش تفهم المارشي كيفاش غادي وتعرف تفتح وتسد الصفقات ديالك.</p>
+                <!-- Step 2 -->
+                <div class="step-card p-8">
+                    <div class="text-yellow-500 text-6xl font-black mb-4 opacity-50">02</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">التطبيقات والأساسيات</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        مباشرة مور ما تنخرط، <strong class="text-white">التطبيقات وكلشي كانوريوهم ليك</strong>. غانصيفطو ليك شروحات وفيديوهات كتشرح ليك كيفاش تقاد المسائل ديالك من الزيرو، واخا عمرك تداولتي.
+                    </p>
                 </div>
 
-                <div class="card-base card-gold p-8 rounded-3xl text-center relative z-10 group">
-                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-yellow-500/20 to-transparent border border-yellow-500/30 flex items-center justify-center mb-6 text-yellow-500 text-5xl font-black drop-shadow-[0_0_15px_rgba(191,149,63,0.5)] group-hover:scale-110 transition-transform">
-                        3
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">طبق التوصيات واربح</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">فالكروب VIP، غاتبدا توصل بصفقات (Signals) دقيقة ومدروسة. كوپي، كولي، سد الصفقة على ربح، وسحب فلوسك بكل سهولة!</p>
+                <!-- Step 3 -->
+                <div class="step-card p-8">
+                    <div class="text-yellow-500 text-6xl font-black mb-4 opacity-50">03</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">تطبيق الإشارات (Copy / Paste)</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        من الإثنين للجمعة، غانصيفطو ليك فـ الكروب إشارات (Signals) واجدين ومدروسين. ماعليك غير تدير كوپي (Copy) للإشارة، وتكوليها (Paste) فالتطبيق ديالك.
+                    </p>
                 </div>
+
+                <!-- Step 4 -->
+                <div class="step-card p-8">
+                    <div class="text-yellow-500 text-6xl font-black mb-4 opacity-50">04</div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">سحب الأرباح</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        بمجرد ما توصل الصفقة للهدف، كتسدها على ربح. <strong class="text-yellow-400">أرباح يومية كتوصل تال 3000 درهم</strong>، وتقدر تسحب فلوسك لحسابك البنكي بكل سهولة.
+                    </p>
+                </div>
+
             </div>
+        </div>
+    </section>
 
+    <!-- Bottom Call To Action & WhatsApp (Lteht Safi) -->
+    <section class="py-16 px-6 relative z-10 border-t border-white/10 bg-gradient-to-t from-[#25D366]/10 to-transparent">
+        <div class="container mx-auto text-center max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-black mb-6">مستعد تبدا تحقق أرباحك اليوم؟</h2>
+            <p class="text-gray-400 text-lg mb-10">
+                ماتضيعش الوقت، تواصل معانا دابا فـ الواتساب واختار الباقة ديالك باش تبدا رحلتك معانا.
+            </p>
+            
+            <a href="https://wa.me/212751019600" target="_blank" class="inline-flex items-center justify-center gap-4 bg-[#25D366] hover:bg-[#20bd5a] text-white px-10 py-6 rounded-2xl text-2xl font-black transition-all transform hover:scale-105 shadow-[0_10px_30px_rgba(37,211,102,0.3)] w-full md:w-auto">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                تواصل معنا عبر الواتساب
+            </a>
         </div>
     </section>
 
     <!-- Pied de page -->
-    <footer class="py-10 border-t border-white/5 text-center px-6">
-        <div class="text-2xl font-black gold-text mb-4">DRISS FX GOLD</div>
-        <p class="text-gray-500 text-sm mb-6 max-w-xl mx-auto italic">
-            تحذير من المخاطر: التداول فيه مخاطرة عالية على رأس المال. حنا كنعطيوك الأدوات ولكن أنت المسؤول على قراراتك المالية.
+    <footer class="py-8 bg-black text-center px-6 relative z-10">
+        <div class="text-xl font-black text-gray-400 mb-2">DRISS FX GOLD</div>
+        <p class="text-gray-600 text-xs mb-4 max-w-lg mx-auto">
+            التداول ينطوي على مخاطر. نحن نقدم التوصيات بناءً على تحليلاتنا، وأنت مسؤول عن قراراتك وإدارة رأس مالك.
         </p>
-        <div class="text-xs text-gray-600">© 2026 جميع الحقوق محفوظة لمنصة إدريس إف إكس جولد.</div>
+        <div class="text-xs text-gray-700">© 2026 جميع الحقوق محفوظة.</div>
     </footer>
-
-    <!-- Bouton WhatsApp Flottant -->
-    <a href="https://wa.me/212751019600" target="_blank" class="whatsapp-float fixed bottom-6 right-6 md:bottom-10 md:right-10 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 z-50 group">
-        <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
 
 </body>
 </html>
