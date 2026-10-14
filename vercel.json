@@ -4,20 +4,58 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/connexion", "destination": "/portal.html" },
-    { "source": "/dashboard", "destination": "/portal.html" },
-    { "source": "/admin", "destination": "/portal.html" }
+    {
+      "source": "/connexion",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/admin/connexion",
+      "destination": "/portal.html"
+    }
   ],
   "headers": [
-    { "source": "/(.*)", "headers": [
-      { "key": "X-Content-Type-Options", "value": "nosniff" },
-      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-      { "key": "X-Frame-Options", "value": "DENY" }
-    ] },
-    { "source": "/firebase-messaging-sw.js", "headers": [
-      { "key": "Cache-Control", "value": "no-cache" },
-      { "key": "Service-Worker-Allowed", "value": "/" }
-    ] }
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/firebase-messaging-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    }
   ],
-  "functions": { "api/admin/push.mjs": { "maxDuration": 60 } }
+  "functions": {
+    "api/admin/push.mjs": {
+      "maxDuration": 60
+    }
+  }
 }

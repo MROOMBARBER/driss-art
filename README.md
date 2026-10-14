@@ -128,3 +128,13 @@ Ne migrer le DNS de `drissart.com` vers Vercel qu’après une vérification du 
 - `assets/`, `public/` : polices locales avec licences, illustrations, manifest et icônes.
 
 La connexion Firebase réelle, les domaines autorisés, les contenus et la livraison push doivent être vérifiés sur le projet configuré. La réussite des émulateurs ne prouve pas la connexion à un projet de production.
+
+## Connexion administrateur dédiée
+
+- Page sécurisée : `/admin/connexion` (e-mail + mot de passe, sans inscription admin publique).
+- Dashboard réservé : `/admin`.
+- Projet Firebase prévu pour cette application : `vipxauusd-f0693`. Vérifier que les variables Vercel `VITE_FIREBASE_PROJECT_ID` et les autres clés web utilisent **le même projet** avant de déployer.
+- Dans **Firebase Console → Authentication → Users**, créer un utilisateur administrateur avec son propre e-mail et un mot de passe robuste. Ne jamais enregistrer ce mot de passe dans GitHub, le code source ou des variables `VITE_*`.
+- Relever le **UID** de cet utilisateur, puis attribuer le Custom Claim `admin: true` avec `node scripts/set-admin.mjs --uid VOTRE_UID --project vipxauusd-f0693` depuis une machine opérateur disposant des autorisations Firebase appropriées (instructions précédentes dans ce README).
+- Se déconnecter et se reconnecter pour renouveler le jeton. Les identifiants seuls ne donnent pas le droit d’administrer : Firestore Rules exigent également le Custom Claim.
+- Les utilisateurs ordinaires ne peuvent ni accorder un rôle d’administration ni modifier les règles depuis le site.
