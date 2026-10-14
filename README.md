@@ -156,3 +156,9 @@ Pour le projet **driss-xauusd** uniquement, Firebase **vipxauusd-f0693**.
 Les autres comptes, y compris ceux qui connaissent l'UID, ne peuvent pas s'octroyer les droits : le serveur exige le **jeton d'authentification signé et valide** provenant de l'UID exact. Aucun mot de passe admin ni clé privée ne doit être stocké dans le code frontend. Firebase Rules continuent à imposer le Custom Claim pour toutes les actions d'administration.
 
 La variable `ADMIN_BOOTSTRAP_UID` n'est nécessaire que pour la première activation. Si les identifiants serveur Firebase ou les droits IAM manquent, la page affiche un message au lieu de contourner l'autorisation.
+
+## Firebase Web SDK auto-discovery (Production)
+
+When the Vercel Production environment has `FIREBASE_SERVICE_ACCOUNT_JSON` from project `vipxauusd-f0693`, the build script `scripts/discover-firebase-web.mjs` can retrieve the *public* Firebase Web SDK configuration (apiKey, appId, messagingSenderId) from the Firebase Management API. The script writes only those public identifiers into an ignored local `.env.production.local` file for Vite, never the service account key or OAuth token. It requires exactly one registered Web app and a service account permitted to read the Firebase project web app config. If discovery fails, the build fails rather than silently launching a disconnected login page.
+
+For ordinary local/CI builds without production service credentials, discovery is skipped. Supplying `VITE_FIREBASE_API_KEY` and `VITE_FIREBASE_APP_ID` in Vercel overrides this discovery process. The Firebase browser config fields are public identifiers; Firestore rules and backend authorization protect private data.
