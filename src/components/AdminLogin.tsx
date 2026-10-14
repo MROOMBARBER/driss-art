@@ -36,13 +36,37 @@ export default function AdminLogin({ alreadyAdmin }: { alreadyAdmin: boolean }) 
       const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
       const token = await getIdTokenResult(credential.user, true);
       if (token.claims.admin !== true) {
-        await signOut(auth);
-        setError('Ce compte ne possède pas les droits administrateur. Contactez le propriétaire de la plateforme.');
-        return;
+        // The browser never chooses the authorized UID. The server verifies the
+        // signed Firebase token against Vercel's private ADMIN_BOOTSTRAP_UID.
+        const response = await fetch('/api/admin/bootstrap', {
+          method: 'POST',
+          headers: { Authorization: 'Bearer ' + token.token },
+          cache: 'no-store',
+        });
+        const data = await response.json().catch(() => ({})) as { error?: string; activated?: boolean };
+        if (!response.ok || data.activated !== true) {
+          const issues: Record<string, string> = {
+            setup_not_configured: "L'activation initiale doit être configurée dans Vercel : ADMIN_BOOTSTRAP_UID.",
+            firebase_server_unavailable: "Vérifiez les identifiants serveur Firebase dans Vercel.",
+            incorrect_firebase_project: "Le serveur doit être connecté au projet Firebase vipxauusd-f0693.",
+            not_bootstrap_owner: "Ce compte n'est pas l'administrateur autorisé.",
+            invalid_authentication: "Session expirée. Réessayez de vous connecter.",
+            user_disabled: "Votre compte est désactivé dans Firebase.",
+            admin_role_update_failed: "Firebase n'a pas pu attribuer le rôle administrateur. Vérifiez les permissions du compte de service.",
+          };
+          throw new Error(issues[data.error || ''] || "L'activation administrateur n'est pas encore disponible.");
+        }
+        const updatedToken = await getIdTokenResult(credential.user, true);
+        if (updatedToken.claims.admin !== true) {
+          throw new Error("Le rôle a été créé, mais la session ne s'est pas actualisée. Réessayez.");
+        }
       }
       window.location.replace('/admin');
     } catch (cause) {
-      setError(friendlyError(cause, 'Connexion administrateur impossible. Vérifiez vos informations et réessayez.'));
+      if (auth?.currentUser) await signOut(auth).catch(() => {});
+      setError(cause instanceof Error && !('code' in cause)
+        ? cause.message
+        : friendlyError(cause, 'Connexion administrateur impossible. Vérifiez vos informations et réessayez.'));
     } finally {
       setBusy(false);
     }

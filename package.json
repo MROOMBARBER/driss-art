@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24 <25" },
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "dev:emulator": "vite --mode emulator --host 127.0.0.1 --port 5173 --strictPort",
@@ -11,7 +13,7 @@
     "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
     "emulators": "firebase emulators:start --project demo-xauusd --only auth,firestore",
     "test:rules": "firebase emulators:exec --project demo-xauusd --only firestore 'node --test tests/firestore.rules.test.mjs'",
-    "test:api": "node --test tests/push-api.test.mjs",
+    "test:api": "node --test tests/push-api.test.mjs tests/admin-bootstrap.test.mjs",
     "test:e2e": "firebase emulators:exec --project demo-xauusd --only auth,firestore 'node scripts/run-e2e.mjs'"
   },
   "dependencies": {

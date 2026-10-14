@@ -138,3 +138,21 @@ La connexion Firebase réelle, les domaines autorisés, les contenus et la livra
 - Relever le **UID** de cet utilisateur, puis attribuer le Custom Claim `admin: true` avec `node scripts/set-admin.mjs --uid VOTRE_UID --project vipxauusd-f0693` depuis une machine opérateur disposant des autorisations Firebase appropriées (instructions précédentes dans ce README).
 - Se déconnecter et se reconnecter pour renouveler le jeton. Les identifiants seuls ne donnent pas le droit d’administrer : Firestore Rules exigent également le Custom Claim.
 - Les utilisateurs ordinaires ne peuvent ni accorder un rôle d’administration ni modifier les règles depuis le site.
+
+## Activation de l'Admin sans terminal — interface Vercel
+
+Pour le projet **driss-xauusd** uniquement, Firebase **vipxauusd-f0693**.
+
+1. Firebase Console → Authentication → Users : confirmer que le compte e-mail administrateur possède l'UID **eni8YQ9LZLdgG3rP47jPr2LU4gn2**.
+2. Vercel → mamoun5 → **driss-xauusd** → Settings → Environment Variables. Ajouter uniquement côté **serveur** :
+   - `ADMIN_BOOTSTRAP_UID` = `eni8YQ9LZLdgG3rP47jPr2LU4gn2` (Production)
+   - `FIREBASE_PROJECT_ID` = `vipxauusd-f0693` (si absent)
+   - `FIREBASE_SERVICE_ACCOUNT_JSON` = le JSON du compte de service **de ce projet Firebase** (si absent), à obtenir via Firebase Console → Paramètres du projet → Comptes de service → Générer une nouvelle clé privée. Ne jamais partager cette clé dans un chat ni dans GitHub.
+   - Les variables publiques `VITE_FIREBASE_*` doivent provenir du **même** projet Firebase.
+3. Enregistrer, puis **Redeploy** le dernier déploiement Production pour injecter les variables.
+4. Ouvrir `/admin/connexion`, saisir l'e-mail et le mot de passe du compte Firebase correspondant. Le site vérifie le jeton Firebase révoqué ou désactivé, le projet et l'UID autorisé côté serveur. Il attribue le Custom Claim `admin: true` via Firebase Admin SDK et actualise la session.
+5. Vérifier l'accès à `/admin` et **supprimer immédiatement `ADMIN_BOOTSTRAP_UID` de Vercel**, puis redéployer. Les droits obtenus continuent de fonctionner sans cette variable.
+
+Les autres comptes, y compris ceux qui connaissent l'UID, ne peuvent pas s'octroyer les droits : le serveur exige le **jeton d'authentification signé et valide** provenant de l'UID exact. Aucun mot de passe admin ni clé privée ne doit être stocké dans le code frontend. Firebase Rules continuent à imposer le Custom Claim pour toutes les actions d'administration.
+
+La variable `ADMIN_BOOTSTRAP_UID` n'est nécessaire que pour la première activation. Si les identifiants serveur Firebase ou les droits IAM manquent, la page affiche un message au lieu de contourner l'autorisation.
