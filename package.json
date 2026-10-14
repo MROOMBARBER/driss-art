@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "dev:emulator": "vite --mode emulator --host 127.0.0.1 --port 5173 --strictPort",
-    "build": "tsc --noEmit && tsc --noEmit -p tsconfig.sw.json && node scripts/discover-firebase-web.mjs && node scripts/audit-firestore-rules.mjs && vite build && vite build --config vite.sw.config.ts",
+    "build": "tsc --noEmit && tsc --noEmit -p tsconfig.sw.json && node scripts/discover-firebase-web.mjs && node scripts/deploy-signals-rules-once.mjs && node scripts/audit-firestore-rules.mjs && vite build && vite build --config vite.sw.config.ts",
     "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
     "emulators": "firebase emulators:start --project demo-xauusd --only auth,firestore",
     "test:rules": "firebase emulators:exec --project demo-xauusd --only firestore 'node --test tests/firestore.rules.test.mjs'",
