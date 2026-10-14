@@ -19,6 +19,7 @@ async function initializeServices() {
     throw new FirebaseConfigurationError();
   }
 
+  let phase = 'sdk_imports';
   try {
     const [{ applicationDefault, cert, getApps, initializeApp }, { getAuth }, firestore, { getMessaging }] =
       await Promise.all([
@@ -28,6 +29,7 @@ async function initializeServices() {
         import('firebase-admin/messaging'),
       ]);
 
+    phase = 'credential_validation';
     let projectId = process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID;
     let credential;
     if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
@@ -52,10 +54,13 @@ async function initializeServices() {
     if (!projectId || !/^[a-z][a-z0-9-]{4,62}$/.test(projectId)) {
       throw new FirebaseConfigurationError();
     }
+    phase = 'credential_access_token';
     // applicationDefault() alone does not establish that ADC is usable.
     await credential.getAccessToken();
+    phase = 'admin_app_initialization';
     const app = getApps().find((candidate) => candidate.name === 'driss-push-server') ||
       initializeApp({ credential, projectId }, 'driss-push-server');
+    phase = 'admin_service_initialization';
     return {
       auth: getAuth(app),
       db: firestore.getFirestore(app),
@@ -63,8 +68,11 @@ async function initializeServices() {
       serverTimestamp: () => firestore.FieldValue.serverTimestamp(),
       documentId: firestore.FieldPath.documentId(),
     };
-  } catch {
-    // Credential parser, OAuth, SDK and filesystem errors may contain secrets.
+  } catch (error) {
+    // Log only the fixed internal phase and a safe Firebase SDK error code.
+    // NEVER log error.message, stack, credential content, account IDs or tokens.
+    const safeCode = typeof error?.code === 'string' && /^[a-z0-9/_-]{1,80}$/i.test(error.code) ? error.code : 'unclassified';
+    console.error('firebase_admin_init_failure', { phase, code: safeCode });
     throw new FirebaseConfigurationError();
   }
 }
