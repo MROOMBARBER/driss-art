@@ -74,7 +74,7 @@ export default function UserDashboard({ user }: { user: User }) {
   return <div className="dashboard-page">
     <div className="dashboard-intro"><div><span className="portal-eyebrow">VOTRE ESPACE PERSONNEL</span><h1>Bonjour, <em>{displayName.split(' ')[0]}.</em></h1><p>Votre application et les dernières nouvelles, à portée de main.</p></div><span className="live-label"><span aria-hidden="true" />Mis à jour en temps réel</span></div>
     {hasAccess && <nav className="member-quick-actions" aria-label="Accès rapides">
-      <a className="portal-button button-outline" href="#signaux-xauusd" className="portal-button button-outline" data-signal-shortcut="true">↗ Signaux XAUUSD LIVE</a>
+      <a className="portal-button button-outline" href="#signaux-xauusd">↗ Signaux XAUUSD LIVE</a>
       <a className="portal-button button-outline" href="#videos-explicatives"><SpaceIcon kind="video" /> Voir les vidéos explicatives</a>
       <a className="portal-button button-outline" href="#notifications-push"><SpaceIcon kind="notification" /> Notifications push</a>
     </nav>}
