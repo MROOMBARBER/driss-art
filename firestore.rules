@@ -1,0 +1,205 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.get('admin', false) == true;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function boundedList(maximum) {
+      return request.query.limit != null && request.query.limit <= maximum;
+    }
+
+    function validStatus(status) {
+      return status in ['pending', 'active', 'suspended'];
+    }
+
+    function text(value, maximum) {
+      return value is string && value.size() > 0 && value.size() <= maximum;
+    }
+
+    function validProfile(data) {
+      return data.keys().hasAll(['displayName', 'email', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['displayName', 'email', 'createdAt', 'updatedAt'])
+        && text(data.displayName, 80)
+        && text(data.email, 320)
+        && data.createdAt is timestamp
+        && data.updatedAt == request.time;
+    }
+
+    match /users/{uid} {
+      allow get: if isOwner(uid) || isAdmin();
+      allow list: if isAdmin() && boundedList(100);
+      allow create: if isOwner(uid)
+        && validProfile(request.resource.data)
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.createdAt == request.time;
+      allow update: if isOwner(uid)
+        && validProfile(request.resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'updatedAt']);
+      allow delete: if false;
+    }
+
+    function validEntitlement(data) {
+      return data.keys().hasAll(['status', 'plan', 'priceMad', 'updatedAt', 'updatedBy', 'lastAuditId'])
+        && data.keys().hasOnly(['status', 'plan', 'priceMad', 'updatedAt', 'updatedBy', 'lastAuditId'])
+        && validStatus(data.status)
+        && data.plan == 'xauusd-lifetime'
+        && data.priceMad == 2000
+        && data.updatedAt == request.time
+        && data.updatedBy == request.auth.uid
+        && text(data.lastAuditId, 128);
+    }
+
+    function entitlementAuditMatches(uid, data) {
+      let auditPath = /databases/$(database)/documents/auditLogs/$(data.lastAuditId);
+      let audit = getAfter(auditPath).data;
+      return !exists(auditPath)
+        && audit.memberUid == uid
+        && audit.actorUid == request.auth.uid
+        && audit.status == data.status
+        && audit.createdAt == request.time;
+    }
+
+    match /entitlements/{uid} {
+      allow get: if isOwner(uid) || isAdmin();
+      allow list: if isAdmin() && boundedList(100);
+      allow create, update: if isAdmin()
+        && exists(/databases/$(database)/documents/users/$(uid))
+        && validEntitlement(request.resource.data)
+        && entitlementAuditMatches(uid, request.resource.data);
+      allow delete: if false;
+    }
+
+    function validAudit(data, auditId) {
+      let entitlementPath = /databases/$(database)/documents/entitlements/$(data.memberUid);
+      let entitlementAfter = getAfter(entitlementPath).data;
+      return data.keys().hasAll(['memberUid', 'actorUid', 'status', 'previousStatus', 'createdAt'])
+        && data.keys().hasOnly(['memberUid', 'actorUid', 'status', 'previousStatus', 'createdAt'])
+        && text(data.memberUid, 128)
+        && data.actorUid == request.auth.uid
+        && validStatus(data.status)
+        && data.createdAt == request.time
+        && entitlementAfter.lastAuditId == auditId
+        && entitlementAfter.status == data.status
+        && entitlementAfter.updatedBy == request.auth.uid
+        && entitlementAfter.updatedAt == request.time
+        && ((!exists(entitlementPath) && data.previousStatus == null)
+          || (exists(entitlementPath) && data.previousStatus == get(entitlementPath).data.status));
+    }
+
+    match /auditLogs/{auditId} {
+      allow get: if isAdmin() || (signedIn() && resource.data.memberUid == request.auth.uid);
+      allow list: if boundedList(50)
+        && (isAdmin() || (signedIn() && resource.data.memberUid == request.auth.uid));
+      allow create: if isAdmin() && validAudit(request.resource.data, auditId);
+      allow update, delete: if false;
+    }
+
+    function validAnnouncement(data) {
+      return data.keys().hasAll(['title', 'body', 'createdAt', 'createdBy'])
+        && data.keys().hasOnly(['title', 'body', 'createdAt', 'createdBy'])
+        && text(data.title, 120)
+        && text(data.body, 2000)
+        && data.createdAt == request.time
+        && data.createdBy == request.auth.uid;
+    }
+
+    match /announcements/{announcementId} {
+      allow get: if signedIn();
+      allow list: if signedIn() && boundedList(25);
+      allow create: if isAdmin() && validAnnouncement(request.resource.data);
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    function hasActiveAccess() {
+      return signedIn()
+        && get(/databases/$(database)/documents/entitlements/$(request.auth.uid)).data.status == 'active';
+    }
+
+    function httpsUrl(value, optional) {
+      return value is string && value.size() <= 2048
+        && ((optional && value == '')
+          || value.matches('^https://[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?(:[0-9]{1,5})?([/?#][^[:space:]]*)?$'));
+    }
+
+    function validVideo(video) {
+      // Reading each required property below also rejects missing keys. Keeping
+      // these checks inline stays below Firestore's expression budget at 10 videos.
+      return video.keys().hasOnly(['id', 'title', 'url'])
+        && video.id is string && video.id.size() > 0 && video.id.size() <= 80
+        && video.title is string && video.title.size() > 0 && video.title.size() <= 120
+        && video.url is string && video.url.size() <= 2048
+        && video.url.matches('^https://[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?(:[0-9]{1,5})?([/?#][^[:space:]]*)?$');
+    }
+
+    function validVideos(videos) {
+      return videos is list && videos.size() <= 10
+        && (videos.size() < 1 || validVideo(videos[0]))
+        && (videos.size() < 2 || validVideo(videos[1]))
+        && (videos.size() < 3 || validVideo(videos[2]))
+        && (videos.size() < 4 || validVideo(videos[3]))
+        && (videos.size() < 5 || validVideo(videos[4]))
+        && (videos.size() < 6 || validVideo(videos[5]))
+        && (videos.size() < 7 || validVideo(videos[6]))
+        && (videos.size() < 8 || validVideo(videos[7]))
+        && (videos.size() < 9 || validVideo(videos[8]))
+        && (videos.size() < 10 || validVideo(videos[9]));
+    }
+
+    function validApplication(data) {
+      return data.keys().hasAll(['title', 'description', 'downloadUrl', 'brokerUrl', 'videos', 'updatedAt', 'updatedBy'])
+        && data.keys().hasOnly(['title', 'description', 'downloadUrl', 'brokerUrl', 'videos', 'updatedAt', 'updatedBy'])
+        && text(data.title, 120)
+        && text(data.description, 2000)
+        && httpsUrl(data.downloadUrl, true)
+        && httpsUrl(data.brokerUrl, true)
+        && validVideos(data.videos)
+        && data.updatedAt == request.time
+        && data.updatedBy == request.auth.uid;
+    }
+
+    match /settings/application {
+      allow get: if isAdmin() || hasActiveAccess();
+      allow create, update: if isAdmin() && validApplication(request.resource.data);
+      allow delete: if false;
+    }
+
+    function validPushToken(data) {
+      return data.keys().hasAll(['token', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['token', 'createdAt', 'updatedAt'])
+        && text(data.token, 4096)
+        && data.createdAt is timestamp
+        && data.updatedAt == request.time;
+    }
+
+    match /pushTokens/{uid}/tokens/{tokenHash} {
+      allow get: if isOwner(uid) && hasActiveAccess();
+      allow list: if isOwner(uid) && hasActiveAccess() && boundedList(20);
+      allow create: if isOwner(uid) && hasActiveAccess()
+        && tokenHash.matches('^[a-f0-9]{64}$')
+        && validPushToken(request.resource.data)
+        && request.resource.data.createdAt == request.time;
+      allow update: if isOwner(uid) && hasActiveAccess()
+        && tokenHash.matches('^[a-f0-9]{64}$')
+        && validPushToken(request.resource.data)
+        && request.resource.data.token == resource.data.token
+        && request.resource.data.createdAt == resource.data.createdAt;
+      // A revoked member must still be able to stop notifications on a device.
+      allow delete: if isOwner(uid);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

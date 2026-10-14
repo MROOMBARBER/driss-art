@@ -31,3 +31,14 @@ document.addEventListener('click', (event) => {
 window.matchMedia('(max-width: 640px)').addEventListener('change', () => setMenuOpen(false));
 
 document.querySelector('#copyright-year').textContent = String(new Date().getFullYear());
+
+// The public landing page remains usable before a Firebase project is connected.
+// Vite replaces this flag in configured builds; unbuilt static hosting keeps it hidden.
+if (typeof __PORTAL_CONFIGURED__ !== 'undefined' && __PORTAL_CONFIGURED__) {
+  document.querySelector('.member-login').hidden = false;
+  for (const link of document.querySelectorAll('#pricing .purchase-link, .closing-action .purchase-link, .mobile-purchase .purchase-link')) {
+    link.href = '/connexion?mode=register';
+    link.removeAttribute('target');
+    link.removeAttribute('rel');
+  }
+}
