@@ -4,6 +4,7 @@ import { updateDisplayName, watchAnnouncements, watchApplication, watchEntitleme
 import type { Announcement, ApplicationSettings, AuditEntry, Entitlement, UserProfile } from '../lib/types';
 import { ArrowIcon, EmptyState, formatDate, friendlyError, LoadingState, Notice, SectionHeading, SpaceIcon, StatusBadge, supportUrl, statusLabels } from './PortalUI';
 import PushNotifications from './PushNotifications';
+import { DEFAULT_BROKER_URL } from '../lib/broker';
 
 export default function UserDashboard({ user }: { user: User }) {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -61,14 +62,19 @@ export default function UserDashboard({ user }: { user: User }) {
   const displayName = profile?.displayName || user.displayName || 'Membre';
   const activationLink = supportUrl(`Bonjour, je souhaite activer mon accès à l’application XAUUSD à 2 000 DH à vie. Mon compte : ${user.email || user.uid}.`);
   const validDownload = application?.downloadUrl && /^https:\/\//i.test(application.downloadUrl) ? application.downloadUrl : '';
-  const validBroker = application?.brokerUrl && /^https:\/\//i.test(application.brokerUrl) ? application.brokerUrl : '';
+  // Saved administrator settings override the owner-provided Exness partner link.
+  const validBroker = application?.brokerUrl && /^https:\/\//i.test(application.brokerUrl) ? application.brokerUrl : DEFAULT_BROKER_URL;
+  const isExnessBroker = (() => {
+    try { return /(^|\.)exnessonelink\.com$/i.test(new URL(validBroker).hostname); }
+    catch { return false; }
+  })();
   const hasAccess = !accessLoading && !accessError && status === 'active';
 
   return <div className="dashboard-page">
     <div className="dashboard-intro"><div><span className="portal-eyebrow">VOTRE ESPACE PERSONNEL</span><h1>Bonjour, <em>{displayName.split(' ')[0]}.</em></h1><p>Votre application et les dernières nouvelles, à portée de main.</p></div><span className="live-label"><span aria-hidden="true" />Mis à jour en temps réel</span></div>
     {hasAccess && <section className="member-spaces" aria-label="Vos trois espaces XAUUSD">
       <article className="portal-card member-space video-space"><div className="space-topline"><span className="space-number">01</span><span className="space-icon" aria-hidden="true"><SpaceIcon kind="video" /></span></div><h2>Comprendre.<br /><em>Depuis zéro.</em></h2><p>Vos vidéos explicatives pour découvrir les bases et avancer étape par étape.</p>{applicationLoading ? <LoadingState label="Chargement des vidéos…" /> : applicationError ? <Notice>{applicationError}</Notice> : application?.videos?.length ? <ol className="member-video-list">{application.videos.filter(video => /^https:\/\//i.test(video.url)).map((video, index) => <li key={video.id}><a href={video.url} target="_blank" rel="noopener noreferrer"><span className="video-number">{String(index + 1).padStart(2, '0')}</span><span>{video.title}</span><ArrowIcon /></a></li>)}</ol> : <div className="space-empty">Vos premières vidéos seront disponibles ici dès leur publication.</div>}</article>
-      <article className="portal-card member-space broker-space"><div className="space-topline"><span className="space-number">02</span><span className="space-icon" aria-hidden="true"><SpaceIcon kind="broker" /></span></div><h2>Votre broker.<br /><em>Un lien direct.</em></h2><p>Retrouvez le lien de notre broker partenaire pour ouvrir votre compte.</p>{applicationLoading ? <LoadingState label="Chargement du lien…" /> : applicationError ? <Notice>{applicationError}</Notice> : validBroker ? <a className="portal-button button-gold" href={validBroker} target="_blank" rel="noopener noreferrer">Accéder au broker<ArrowIcon /></a> : <div className="space-empty">Le lien du broker sera disponible ici dès sa mise à disposition.</div>}<small className="broker-disclosure">Lien d’affiliation : nous pouvons recevoir une commission. Le trading comporte un risque de perte en capital.</small></article>
+      <article className="portal-card member-space broker-space"><div className="space-topline"><span className="space-number">02</span><span className="space-icon" aria-hidden="true"><SpaceIcon kind="broker" /></span></div>{isExnessBroker && <div className="broker-wordmark"><img src="/exness-logo.svg" alt="Exness — broker partenaire" width="280" height="58" loading="lazy" /></div>}<h2>Votre broker.<br /><em>Un lien direct.</em></h2><p>Retrouvez le lien de notre broker partenaire pour ouvrir votre compte.</p>{applicationLoading ? <LoadingState label="Chargement du lien…" /> : applicationError ? <Notice>{applicationError}</Notice> : <a className="portal-button button-gold" href={validBroker} target="_blank" rel="noopener noreferrer sponsored">{isExnessBroker ? 'Ouvrir un compte Exness' : 'Accéder au broker'}<ArrowIcon /></a>}<small className="broker-disclosure">Lien d’affiliation : nous pouvons recevoir une commission. Le trading comporte un risque de perte en capital.</small></article>
       <article className="portal-card member-space notification-space"><div className="space-topline"><span className="space-number">03</span><span className="space-icon" aria-hidden="true"><SpaceIcon kind="notification" /></span></div><h2>Restez au courant.<br /><em>Activez les alertes.</em></h2><p>Recevez les notifications de votre espace sur cet appareil.</p><PushNotifications user={user} /></article>
     </section>}
     <div className="user-dashboard-grid">

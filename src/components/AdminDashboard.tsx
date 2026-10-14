@@ -3,6 +3,7 @@ import type { User } from 'firebase/auth';
 import { deleteAnnouncement, saveAnnouncement, saveApplication, setMemberStatus, watchAnnouncements, watchApplication, watchAuditLogs, watchMembers } from '../lib/membership';
 import type { Announcement, ApplicationSettings, AuditEntry, MemberRecord, MembershipStatus } from '../lib/types';
 import { dispatchAnnouncementPush } from '../lib/push';
+import { DEFAULT_BROKER_URL } from '../lib/broker';
 import { ArrowIcon, EmptyState, formatDate, friendlyError, LoadingState, Notice, SectionHeading, StatusBadge, statusLabels } from './PortalUI';
 
 type Tab = 'members' | 'announcements' | 'application' | 'audit';
@@ -51,7 +52,7 @@ export default function AdminDashboard({ user }: { user: User }) {
   const [appTitle, setAppTitle] = useState('Application XAUUSD');
   const [appDescription, setAppDescription] = useState('');
   const [downloadUrl, setDownloadUrl] = useState('');
-  const [brokerUrl, setBrokerUrl] = useState('');
+  const [brokerUrl, setBrokerUrl] = useState(DEFAULT_BROKER_URL);
   const [videos, setVideos] = useState<VideoDraft[]>([]);
   const [settingsDirty, setSettingsDirty] = useState(false);
   const [savingSettings, setSavingSettings] = useState(false);
@@ -73,7 +74,7 @@ export default function AdminDashboard({ user }: { user: User }) {
     setAppTitle(application?.title || 'Application XAUUSD');
     setAppDescription(application?.description || '');
     setDownloadUrl(application?.downloadUrl || '');
-    setBrokerUrl(application?.brokerUrl || '');
+    setBrokerUrl(application?.brokerUrl || DEFAULT_BROKER_URL);
     setVideos(application?.videos || []);
   }, [application, settingsDirty]);
 

@@ -355,3 +355,7 @@ textarea { resize: vertical; }
   .portal-footer { flex-direction: column; align-items: flex-start; gap: 9px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+/* Brand asset supplied by the owner, visible only for Exness partner URLs. */
+.broker-wordmark { display: flex; align-items: center; justify-content: center; min-height: 85px; background: #070e20; border: 1px solid var(--portal-line); border-radius: 12px; margin: 12px 0 21px; padding: 16px; }
+.broker-wordmark img { display: block; width: min(100%, 280px); height: auto; max-height: 58px; object-fit: contain; }
