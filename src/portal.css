@@ -385,3 +385,38 @@ textarea { resize: vertical; }
 .push-help { border-top: 1px solid var(--portal-line); padding-top: 12px; font-size: 13px; color: var(--portal-muted); }
 .push-help summary { cursor: pointer; color: var(--portal-gold); font-weight: 600; }
 .push-help p { margin: 10px 0 0; line-height: 1.65; }
+
+/* Live XAUUSD signals */
+.signals-panel { display:grid; gap: 18px; }
+.signals-feed { margin-bottom: 26px; scroll-margin-top: 20px; }
+.signal-compose { padding:18px; border:1px solid var(--portal-line); border-radius:14px; }
+.signal-direction { display:flex; gap: 10px; }
+.signal-direction-button { flex:1; background:#1b1e20; border:1px solid #424649; color:#f5efe7; border-radius:9px; padding:12px; font-weight:800; }
+.signal-direction-button.buy.selected { border-color:#45cd8b; color:#76e6b0; background:#17362b; }
+.signal-direction-button.sell.selected { border-color:#ec8588; color:#ffafb1; background:#382025; }
+.signal-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.signal-list { display:grid; gap:14px; }
+.signal-card { display:grid; gap:10px; min-width:0; background:#14191b; border:1px solid var(--portal-line); border-left:4px solid #34af77; border-radius:10px; padding:16px; }
+.signal-card.sell { border-left-color:#d7626b; }
+.signal-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.signal-heading strong { font-size:17px; }
+.signal-card.buy .signal-heading strong span { color:#76e6b0; }
+.signal-card.sell .signal-heading strong span { color:#ffafb1; }
+.signal-status { color:#83e2b4; background:#234332; border-radius:30px; padding:5px 11px; font-size:12px; }
+.signal-status.tp_hit { color:#85e6b7; background:#195138; }
+.signal-status.sl_hit { color:#ffacb0; background:#582a30; }
+.signal-status.closed { color:#e0e0e0; background:#33383b; }
+.signal-values { display:flex; gap:10px; flex-wrap:wrap; }
+.signal-values span { display:flex; flex-direction:column; gap:3px; border:1px solid #33383a; border-radius:7px; background:#1e2224; padding:9px 13px; white-space:pre-wrap; overflow-wrap:anywhere; }
+.signal-values b { font-size:10px; color:var(--portal-muted); letter-spacing:.06em; text-transform:uppercase; }
+.signal-message { line-height:1.5; white-space:pre-wrap; overflow-wrap:anywhere; margin:0; }
+.signal-card small { color:var(--portal-muted); }
+.signal-close { border-top:1px solid var(--portal-line); padding-top:12px; margin:0; overflow-wrap:anywhere; }
+.signal-finalize { display:grid; gap:12px; padding-top:12px; border-top:1px solid var(--portal-line); }
+.signal-finalize input { width:100%; margin-top:8px; }
+.signal-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.signal-actions button { border:1px solid #42474b; border-radius:8px; background:#202628; color:#f4f0e7; padding:10px 13px; font-weight:600; }
+.signal-actions button:nth-child(2) { border-color:#3e8865; color:#88eab7; }
+.signal-actions button:nth-child(3) { border-color:#924a53; color:#ffafb1; }
+.signal-push { padding-top:10px; border-top:1px solid var(--portal-line); display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+@media(max-width:700px){.signal-fields{grid-template-columns:1fr}.signal-compose{padding:13px}}

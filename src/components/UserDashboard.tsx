@@ -4,6 +4,7 @@ import { updateDisplayName, watchAnnouncements, watchApplication, watchEntitleme
 import type { Announcement, ApplicationSettings, AuditEntry, Entitlement, UserProfile } from '../lib/types';
 import { ArrowIcon, EmptyState, formatDate, friendlyError, LoadingState, Notice, SectionHeading, SpaceIcon, StatusBadge, supportUrl, statusLabels } from './PortalUI';
 import PushNotifications from './PushNotifications';
+import SignalsFeed from './SignalsFeed';
 import { DEFAULT_BROKER_URL } from '../lib/broker';
 
 export default function UserDashboard({ user }: { user: User }) {
@@ -73,9 +74,11 @@ export default function UserDashboard({ user }: { user: User }) {
   return <div className="dashboard-page">
     <div className="dashboard-intro"><div><span className="portal-eyebrow">VOTRE ESPACE PERSONNEL</span><h1>Bonjour, <em>{displayName.split(' ')[0]}.</em></h1><p>Votre application et les dernières nouvelles, à portée de main.</p></div><span className="live-label"><span aria-hidden="true" />Mis à jour en temps réel</span></div>
     {hasAccess && <nav className="member-quick-actions" aria-label="Accès rapides">
+      <a className="portal-button button-outline" href="#signaux-xauusd" className="portal-button button-outline" data-signal-shortcut="true">↗ Signaux XAUUSD LIVE</a>
       <a className="portal-button button-outline" href="#videos-explicatives"><SpaceIcon kind="video" /> Voir les vidéos explicatives</a>
       <a className="portal-button button-outline" href="#notifications-push"><SpaceIcon kind="notification" /> Notifications push</a>
     </nav>}
+    {hasAccess && <SignalsFeed />}
     {hasAccess && <section className="member-spaces" aria-label="Vos trois espaces XAUUSD">
       <article id="videos-explicatives" className="portal-card member-space video-space"><div className="space-topline"><span className="space-number">01</span><span className="space-icon" aria-hidden="true"><SpaceIcon kind="video" /></span></div><h2>Comprendre.<br /><em>Depuis zéro.</em></h2><p>Vos vidéos explicatives pour découvrir les bases et avancer étape par étape.</p>{applicationLoading ? <LoadingState label="Chargement des vidéos…" /> : applicationError ? <Notice>{applicationError}</Notice> : application?.videos?.length ? <ol className="member-video-list">{application.videos.filter(video => /^https:\/\//i.test(video.url)).map((video, index) => <li key={video.id}><a href={video.url} target="_blank" rel="noopener noreferrer"><span className="video-number">{String(index + 1).padStart(2, '0')}</span><span>{video.title}</span><ArrowIcon /></a></li>)}</ol> : <div className="space-empty">Vos premières vidéos seront disponibles ici dès leur publication.</div>}</article>
       <article className="portal-card member-space broker-space"><div className="space-topline"><span className="space-number">02</span><span className="space-icon" aria-hidden="true"><SpaceIcon kind="broker" /></span></div>{isExnessBroker && <div className="broker-wordmark"><img src="/exness-logo.svg" alt="Exness — broker partenaire" width="280" height="58" loading="lazy" /></div>}<h2>Votre broker.<br /><em>Un lien direct.</em></h2><p>Retrouvez le lien de notre broker partenaire pour ouvrir votre compte.</p>{applicationLoading ? <LoadingState label="Chargement du lien…" /> : applicationError ? <Notice>{applicationError}</Notice> : <a className="portal-button button-gold" href={validBroker} target="_blank" rel="noopener noreferrer sponsored">{isExnessBroker ? 'Ouvrir un compte Exness' : 'Accéder au broker'}<ArrowIcon /></a>}<small className="broker-disclosure">Lien d’affiliation : nous pouvons recevoir une commission. Le trading comporte un risque de perte en capital.</small></article>
