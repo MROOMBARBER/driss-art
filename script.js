@@ -35,7 +35,6 @@ document.querySelector('#copyright-year').textContent = String(new Date().getFul
 // The public landing page remains usable before a Firebase project is connected.
 // Vite replaces this flag in configured builds; unbuilt static hosting keeps it hidden.
 if (typeof __PORTAL_CONFIGURED__ !== 'undefined' && __PORTAL_CONFIGURED__) {
-  document.querySelector('.member-login').hidden = false;
   for (const link of document.querySelectorAll('#pricing .purchase-link, .closing-action .purchase-link, .mobile-purchase .purchase-link')) {
     link.href = '/connexion?mode=register';
     link.removeAttribute('target');

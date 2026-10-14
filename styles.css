@@ -312,3 +312,19 @@ details[open] .faq-plus::after { transform: rotate(0); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Registration and login available on the homepage across devices. */
+.site-nav > .member-register-nav { display: none; }
+.site-nav > .member-login { color: var(--gold); font-weight: 800; white-space: nowrap; }
+.hero-auth-actions { gap: 14px; flex-wrap: wrap; }
+.hero-auth-actions .button { gap: 12px; white-space: nowrap; }
+@media (max-width: 850px) {
+  .site-nav > .member-register-nav { display: inline-flex; color: var(--gold); font-weight: 800; white-space: nowrap; }
+  .site-nav { flex-wrap: wrap; justify-content: center; }
+}
+@media (max-width: 640px) {
+  .hero-auth-actions { gap: 10px; flex-wrap: nowrap; }
+  .hero-auth-actions .button { min-width: 0; flex: 1 1 50%; padding: 12px 10px; font-size: 13px; }
+  .site-nav { justify-content: center; column-gap: 14px; row-gap: 0; }
+  .site-nav > a { white-space: nowrap; }
+}
