@@ -51,6 +51,25 @@ export interface ApplicationSettings {
   updatedBy: string;
 }
 
+export type SignalStatus = 'open' | 'closed' | 'tp_hit' | 'sl_hit';
+export interface XauSignal {
+  id: string;
+  symbol: 'XAUUSD';
+  side: 'buy' | 'sell';
+  entry: string;
+  tp: string;
+  sl: string;
+  message: string;
+  status: SignalStatus;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+  createdBy: string;
+  updatedBy: string;
+  closedAt: Timestamp | null;
+  closeNote: string;
+  lastEventId: string;
+}
+
 export interface ApplicationVideo {
   id: string;
   title: string;

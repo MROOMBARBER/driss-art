@@ -36,7 +36,7 @@ function summaryOf(data) {
   return { sent: count('sent'), failed: count('failed'), invalid: count('invalid') };
 }
 
-function parseRequest(req) {
+function parseRequest(req, idField = 'announcementId') {
   let body = req.body;
   if (typeof body === 'string') {
     if (body.length > 1024) throw new RequestError(400, 'invalid_request');
@@ -45,10 +45,10 @@ function parseRequest(req) {
   if (
     !body || typeof body !== 'object' || Array.isArray(body) ||
     Object.keys(body).length !== 1 ||
-    typeof body.announcementId !== 'string' ||
-    !/^[A-Za-z0-9_-]{1,128}$/.test(body.announcementId)
+    typeof body[idField] !== 'string' ||
+    !/^[A-Za-z0-9_-]{1,128}$/.test(body[idField])
   ) throw new RequestError(400, 'invalid_request');
-  return body.announcementId;
+  return body[idField];
 }
 
 function safeOrigin(value) {
@@ -198,7 +198,8 @@ async function finish(services, ref, leaseId, { transientFailures, incomplete, e
 }
 
 /** Injection is only for isolated tests; the deployed handler always uses real Admin SDK services. */
-export function createPushHandler({ getServices = getFirebaseServices, now = Date.now, uuid = randomUUID, appOrigin } = {}) {
+export function createPushHandler({ getServices = getFirebaseServices, now = Date.now, uuid = randomUUID, appOrigin,
+  collectionName = 'announcements', idField = 'announcementId', notificationQuery = 'announcement' } = {}) {
   return async function pushHandler(req, res) {
     if (req.method !== 'POST') {
       res.setHeader('Allow', 'POST');
@@ -215,7 +216,7 @@ export function createPushHandler({ getServices = getFirebaseServices, now = Dat
     let leaseClaimed = false;
     let transientFailures = 0;
     try {
-      const announcementId = parseRequest(req);
+      const announcementId = parseRequest(req, idField);
       services = await getServices();
       let identity;
       try {
@@ -226,7 +227,7 @@ export function createPushHandler({ getServices = getFirebaseServices, now = Dat
       }
       if (identity.admin !== true) throw new RequestError(403, 'administrator_required');
       const origin = safeOrigin(appOrigin ?? process.env.APP_ORIGIN);
-      announcementRef = services.db.doc(`announcements/${announcementId}`);
+      announcementRef = services.db.doc(`${collectionName}/${announcementId}`);
       leaseId = uuid();
       const startedAt = now();
       const claim = await claimAnnouncement(services, announcementRef, leaseId, startedAt);
@@ -248,10 +249,10 @@ export function createPushHandler({ getServices = getFirebaseServices, now = Dat
           const delivery = await services.messaging.sendEachForMulticast({
             tokens: recipients.map((recipient) => recipient.token),
             notification: { title: claim.data.title, body: claim.data.body },
-            data: { announcementId, path: '/dashboard' },
+            data: { [idField]: announcementId, path: '/dashboard' },
             webpush: {
               headers: { TTL: '86400', Urgency: 'normal' },
-              fcmOptions: { link: `${origin}/dashboard?announcement=${encodeURIComponent(announcementId)}` },
+              fcmOptions: { link: `${origin}/dashboard?${notificationQuery}=${encodeURIComponent(announcementId)}` },
             },
           });
           if (!Array.isArray(delivery.responses) || delivery.responses.length !== recipients.length) {
