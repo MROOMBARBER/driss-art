@@ -373,3 +373,15 @@ textarea { resize: vertical; }
 .admin-login-return { margin: 24px 0 0; text-align: center; font-size: 11px; color: var(--portal-muted); }
 .admin-login-return a:hover { color: var(--portal-gold); }
 @media (max-width: 760px) { .admin-login-layout { max-width: 530px; margin: 10px auto 65px; grid-template-columns: 1fr; gap: 26px; } .admin-login-intro h1 { font-size: 38px; } .admin-login-intro > p { font-size: 12px; } .admin-login-icon { width: 65px; height: 65px; margin: 21px 0 15px; border-radius: 17px; } .admin-login-icon svg { width: 38px; height: 38px; } .admin-login-features { margin-top: 21px; padding-top: 20px; } .admin-login-card { max-width: none; } }
+
+/* Member quick actions and clear push-permission/help controls. */
+.member-quick-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 8px 0 24px; }
+.member-quick-actions .portal-button { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; }
+.member-quick-actions svg { width: 19px; height: 19px; flex: none; }
+.member-space { scroll-margin-top: 24px; }
+.push-controls { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+.push-device-status { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; }
+.push-device-status strong { font-weight: 700; }
+.push-help { border-top: 1px solid var(--portal-line); padding-top: 12px; font-size: 13px; color: var(--portal-muted); }
+.push-help summary { cursor: pointer; color: var(--portal-gold); font-weight: 600; }
+.push-help p { margin: 10px 0 0; line-height: 1.65; }

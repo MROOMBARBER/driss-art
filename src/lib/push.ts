@@ -4,9 +4,13 @@ import { deleteDoc, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firest
 import { deleteToken, getMessaging, getToken, isSupported, onMessage, type MessagePayload } from 'firebase/messaging';
 import { auth, db, firebaseConfigured } from './firebase';
 
+// Firebase Messaging can use the project's default Web Push key if a
+// dedicated VAPID public key has not been configured yet. A custom key
+// remains recommended for consistent browser/device support.
+const vapidKey = String(import.meta.env.VITE_FIREBASE_VAPID_KEY || '').trim();
 export const pushConfigured = firebaseConfigured
-  && Boolean(import.meta.env.VITE_FIREBASE_VAPID_KEY)
   && Boolean(import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID);
+export const customVapidConfigured = vapidKey.length > 0;
 
 const storageKey = (uid: string) => `xauusd-push-${uid}`;
 const storedHash = (uid: string) => {
@@ -36,7 +40,7 @@ export async function enablePush(user: User) {
   const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/' });
   await navigator.serviceWorker.ready;
   const token = await getToken(getMessaging(getApp()), {
-    vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY,
+    ...(vapidKey ? { vapidKey } : {}),
     serviceWorkerRegistration: registration,
   });
   if (!token) throw new Error('L’activation a échoué. Réessayez dans quelques instants.');

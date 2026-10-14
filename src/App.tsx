@@ -24,6 +24,14 @@ export default function App() {
   }, [session.loading, session.user, isLoginPage, route]);
 
   useEffect(() => {
+    // Never show an admin screen to a signed-in member. This is navigation
+    // only: Firebase custom claims and Firestore rules remain authoritative.
+    if (route === '/admin' && !session.loading && session.user && !session.isAdmin && !session.error) {
+      window.location.replace('/dashboard');
+    }
+  }, [route, session.loading, session.user, session.isAdmin, session.error]);
+
+  useEffect(() => {
     document.title = `${route === '/admin' || adminLoginPage ? 'Administration' : authPage ? 'Connexion' : 'Mon espace'} — XAUUSD`;
   }, [route, authPage, adminLoginPage]);
 
@@ -53,7 +61,7 @@ export default function App() {
         : session.loading ? <LoadingState label="Ouverture de votre espace…" />
         : session.error ? <Notice>{session.error}</Notice>
         : !session.user ? <LoadingState label="Redirection vers la connexion…" />
-        : route === '/admin' ? session.isAdmin ? <AdminDashboard user={session.user} /> : <section className="portal-card portal-unavailable"><h1>Accès réservé.</h1><p>Cette page est réservée à l’administration. Connectez-vous avec un compte autorisé.</p><a className="portal-button button-gold" href="/admin/connexion">Connexion administrateur</a></section>
+        : route === '/admin' ? session.isAdmin ? <AdminDashboard user={session.user} /> : <section className="portal-card portal-unavailable"><h1>Accès réservé.</h1><p>Redirection vers votre espace personnel…</p><a className="portal-button button-gold" href="/dashboard">Mon espace</a></section>
         : <UserDashboard user={session.user} />}
     </main>
     <footer className="portal-footer"><span>© {new Date().getFullYear()} XAUUSD</span><span>Un paiement. Un accès à vie.</span><a href="https://wa.me/212751019600" target="_blank" rel="noopener noreferrer">Une question ? Contactez-nous.</a></footer>

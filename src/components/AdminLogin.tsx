@@ -45,6 +45,13 @@ export default function AdminLogin({ alreadyAdmin }: { alreadyAdmin: boolean }) 
         });
         const data = await response.json().catch(() => ({})) as { error?: string; activated?: boolean };
         if (!response.ok || data.activated !== true) {
+          // A member using the admin sign-in link keeps their authenticated
+          // session and lands in their own dashboard, never the admin panel.
+          // The server remains the only authority for granting admin:true.
+          if (data.error === 'not_bootstrap_owner') {
+            window.location.replace('/dashboard');
+            return;
+          }
           const issues: Record<string, string> = {
             setup_not_configured: "L'activation initiale doit être configurée dans Vercel : ADMIN_BOOTSTRAP_UID.",
             firebase_server_unavailable: "Vérifiez les identifiants serveur Firebase dans Vercel.",
@@ -84,7 +91,7 @@ export default function AdminLogin({ alreadyAdmin }: { alreadyAdmin: boolean }) 
     <section className="portal-card auth-card admin-login-card" aria-labelledby="admin-login-title">
       <span className="card-kicker">ACCÈS ADMINISTRATEUR UNIQUEMENT</span>
       <h2 id="admin-login-title">{resetMode ? 'Mot de passe oublié ?' : 'Bienvenue, Admin.'}</h2>
-      <p className="card-description">{resetMode ? 'Indiquez votre e-mail administrateur pour recevoir le lien de réinitialisation.' : 'Connectez-vous avec votre compte administrateur Firebase. Les comptes membres ne peuvent pas accéder à cette interface.'}</p>
+      <p className="card-description">{resetMode ? 'Indiquez votre e-mail administrateur pour recevoir le lien de réinitialisation.' : 'Connectez-vous avec votre compte administrateur Firebase. Les comptes membres sont automatiquement redirigés vers leur espace personnel.'}</p>
       {error && <Notice>{error}</Notice>}
       {success && <Notice kind="success">{success}</Notice>}
       {alreadyAdmin
