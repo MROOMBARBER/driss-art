@@ -35,7 +35,7 @@ if (!ACCOUNT) {
   try {
     const account = JSON.parse(ACCOUNT);
     if (account.type !== 'service_account' || account.project_id !== PROJECT_ID ||
-        !valid(account.private_key) || !valid(account.client_email)) {
+        typeof account.private_key !== 'string' || !account.private_key.startsWith('-----BEGIN PRIVATE KEY-----') || !valid(account.client_email)) {
       throw new Error('wrong_server_credential_project');
     }
     const credential = cert(account);
