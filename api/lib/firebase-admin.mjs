@@ -1,3 +1,9 @@
+import { applicationDefault, cert, getApps, initializeApp } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+import { getFirestore, FieldPath, FieldValue } from 'firebase-admin/firestore';
+import { getMessaging } from 'firebase-admin/messaging';
+
+// Static imports ensure Vercel's Node function tracing bundles Admin SDK modules.
 export class FirebaseConfigurationError extends Error {
   constructor(phase = 'configuration_unavailable') {
     super('Firebase server credentials are unavailable.');
@@ -20,17 +26,8 @@ async function initializeServices() {
     throw new FirebaseConfigurationError();
   }
 
-  let phase = 'sdk_imports';
+  let phase = 'credential_validation';
   try {
-    const [{ applicationDefault, cert, getApps, initializeApp }, { getAuth }, firestore, { getMessaging }] =
-      await Promise.all([
-        import('firebase-admin/app'),
-        import('firebase-admin/auth'),
-        import('firebase-admin/firestore'),
-        import('firebase-admin/messaging'),
-      ]);
-
-    phase = 'credential_validation';
     let projectId = process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID;
     let credential;
     if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
@@ -64,10 +61,10 @@ async function initializeServices() {
     phase = 'admin_service_initialization';
     return {
       auth: getAuth(app),
-      db: firestore.getFirestore(app),
+      db: getFirestore(app),
       messaging: getMessaging(app),
-      serverTimestamp: () => firestore.FieldValue.serverTimestamp(),
-      documentId: firestore.FieldPath.documentId(),
+      serverTimestamp: () => FieldValue.serverTimestamp(),
+      documentId: FieldPath.documentId(),
     };
   } catch (error) {
     // Log only the fixed internal phase and a safe Firebase SDK error code.
