@@ -1,7 +1,8 @@
 export class FirebaseConfigurationError extends Error {
-  constructor() {
+  constructor(phase = 'configuration_unavailable') {
     super('Firebase server credentials are unavailable.');
     this.name = 'FirebaseConfigurationError';
+    this.phase = phase;
   }
 }
 
@@ -73,7 +74,7 @@ async function initializeServices() {
     // NEVER log error.message, stack, credential content, account IDs or tokens.
     const safeCode = typeof error?.code === 'string' && /^[a-z0-9/_-]{1,80}$/i.test(error.code) ? error.code : 'unclassified';
     console.error('firebase_admin_init_failure', { phase, code: safeCode });
-    throw new FirebaseConfigurationError();
+    throw new FirebaseConfigurationError(phase);
   }
 }
 
