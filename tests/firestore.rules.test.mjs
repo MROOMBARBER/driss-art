@@ -282,3 +282,31 @@ test('an owner listener receives an admin activation in real time', async () => 
   await assertSucceeds(changeStatus());
   assert.equal((await changed).status, 'active');
 });
+
+
+test('XAUUSD signals are visible only to active VIP members and admins', async () => {
+  const active = environment.authenticatedContext('active-member', { email: 'active@example.test' }).firestore();
+  await environment.withSecurityRulesDisabled(async (context) => {
+    const store = context.firestore();
+    await setDoc(doc(store, 'entitlements', 'active-member'), {
+      status: 'active', plan: 'xauusd-lifetime', priceMad: 2000,
+      updatedAt: Timestamp.now(), updatedBy: 'admin-one', lastAuditId: 'test',
+    });
+    await setDoc(doc(store, 'signals', 'signal-1'), {
+      symbol: 'XAUUSD', side: 'buy', status: 'open', entry: '', tp: '', sl: '',
+      message: 'Test signal', createdAt: Timestamp.now(), updatedAt: Timestamp.now(),
+    });
+    await setDoc(doc(store, 'signalPushEvents', 'event-1'), { title: 'Private', body: 'Hidden' });
+  });
+  await assertSucceeds(getDoc(doc(active, 'signals', 'signal-1')));
+  await assertSucceeds(getDocs(query(collection(active, 'signals'), orderBy('createdAt', 'desc'), limit(50))));
+  await assertSucceeds(getDoc(doc(admin, 'signals', 'signal-1')));
+  await assertFails(getDoc(doc(owner, 'signals', 'signal-1')));
+  await assertFails(getDoc(doc(guest, 'signals', 'signal-1')));
+  await assertFails(getDocs(query(collection(owner, 'signals'), limit(50))));
+  await assertFails(getDocs(query(collection(active, 'signals'), limit(51))));
+  await assertFails(setDoc(doc(active, 'signals', 'forged'), { status: 'active' }));
+  await assertFails(setDoc(doc(admin, 'signals', 'forged'), { status: 'active' }));
+  await assertFails(getDoc(doc(active, 'signalPushEvents', 'event-1')));
+  await assertFails(getDoc(doc(admin, 'signalPushEvents', 'event-1')));
+});

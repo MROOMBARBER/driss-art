@@ -162,3 +162,11 @@ La variable `ADMIN_BOOTSTRAP_UID` n'est nécessaire que pour la première activa
 When the Vercel Production environment has `FIREBASE_SERVICE_ACCOUNT_JSON` from project `vipxauusd-f0693`, the build script `scripts/discover-firebase-web.mjs` can retrieve the *public* Firebase Web SDK configuration (apiKey, appId, messagingSenderId) from the Firebase Management API. The script writes only those public identifiers into an ignored local `.env.production.local` file for Vite, never the service account key or OAuth token. It requires exactly one registered Web app and a service account permitted to read the Firebase project web app config. If discovery fails, the build fails rather than silently launching a disconnected login page.
 
 For ordinary local/CI builds without production service credentials, discovery is skipped. Supplying `VITE_FIREBASE_API_KEY` and `VITE_FIREBASE_APP_ID` in Vercel overrides this discovery process. The Firebase browser config fields are public identifiers; Firestore rules and backend authorization protect private data.
+
+## Signaux XAUUSD en temps réel
+
+Admin > **Signaux XAUUSD** permet de publier BUY/SELL avec entrée, TP, SL et message tous facultatifs, puis de clôturer manuellement (Clôturé / TP atteint / SL atteint). Le serveur Firebase Admin valide le JWT Firebase et `admin:true`, écrit atomiquement le signal et un événement de notification distinct. Les membres actifs lisent les signaux via l'écoute Firestore en direct; les comptes en attente ou suspendus n'y ont pas accès. L'événement Push est transmis via `/api/admin/signal-push` avec le mécanisme de réception unique par appareil de l'API d'annonces existante. Une notification n'est possible que pour les appareils inscrits au Web Push; un bouton de relance est prévu si le premier envoi a échoué.
+
+IMPORTANT : les états TP/SL sont renseignés **manuellement** par l'admin, sans suivi automatique du prix ni exécution de trading.
+
+Les règles Firestore actualisées doivent être publiées sur le projet **vipxauusd-f0693**. Ne pas déployer vers le projet MAMOUN VIP SIGNALS.

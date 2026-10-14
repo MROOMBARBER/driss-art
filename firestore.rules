@@ -126,6 +126,19 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/entitlements/$(request.auth.uid)).data.status == 'active';
     }
 
+    // XAUUSD signals are published/closed exclusively through the protected
+    // server endpoint. Only active VIP members and admins can see them.
+    match /signals/{signalId} {
+      allow get: if isAdmin() || hasActiveAccess();
+      allow list: if boundedList(50) && (isAdmin() || hasActiveAccess());
+      allow create, update, delete: if false;
+    }
+
+    // Signal push events and FCM delivery receipts are server-only.
+    match /signalPushEvents/{eventId} {
+      allow read, write: if false;
+    }
+
     function httpsUrl(value, optional) {
       return value is string && value.size() <= 2048
         && ((optional && value == '')
